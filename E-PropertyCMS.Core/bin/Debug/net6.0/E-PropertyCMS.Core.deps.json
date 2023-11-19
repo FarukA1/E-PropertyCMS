@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "E-PropertyCMS.Core/1.0.0": {
+        "runtime": {
+          "E-PropertyCMS.Core.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "E-PropertyCMS.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -8,6 +8,8 @@ namespace E_PropertyCMS.Repository.Models
 	{
         public int Id { get; set; }
         public Guid Key { get; set; }
+        public PropertyDbModel Property { get; set; }
+        public int PropertyId { get; set; }
         public string RoomType { get; set; }
         public string Description { get; set; }
 

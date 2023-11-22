@@ -1,8 +1,21 @@
 {
   "version": 2,
-  "dgSpecHash": "VxtJuCUGt8MecJbsvI/MOEfGWVW/nMSZ1ewW4JKPryflCiGe5GBGTtqaNtf98XpfVeqCZ3QYV/8+SrbTmfy6xw==",
+  "dgSpecHash": "az/VtxxqNsPVDq+RHMHiZHazTc157c5Xyuf4CMWBi4nys2qsGnvIfDpPoFcYCoB5lD+EheO429z2Vg+rDorVSg==",
   "success": true,
   "projectFilePath": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Core/E-PropertyCMS.Core.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/farukawofeso/.nuget/packages/microsoft.aspnetcore.webutilities/2.2.0/microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
+    "/Users/farukawofeso/.nuget/packages/microsoft.extensions.dependencyinjection/6.0.0/microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
+    "/Users/farukawofeso/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "/Users/farukawofeso/.nuget/packages/microsoft.extensions.logging/6.0.0/microsoft.extensions.logging.6.0.0.nupkg.sha512",
+    "/Users/farukawofeso/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.4/microsoft.extensions.logging.abstractions.6.0.4.nupkg.sha512",
+    "/Users/farukawofeso/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "/Users/farukawofeso/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "/Users/farukawofeso/.nuget/packages/microsoft.net.http.headers/2.2.0/microsoft.net.http.headers.2.2.0.nupkg.sha512",
+    "/Users/farukawofeso/.nuget/packages/system.buffers/4.5.0/system.buffers.4.5.0.nupkg.sha512",
+    "/Users/farukawofeso/.nuget/packages/system.diagnostics.diagnosticsource/6.0.0/system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
+    "/Users/farukawofeso/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "/Users/farukawofeso/.nuget/packages/system.text.encodings.web/4.5.0/system.text.encodings.web.4.5.0.nupkg.sha512"
+  ],
   "logs": []
 }

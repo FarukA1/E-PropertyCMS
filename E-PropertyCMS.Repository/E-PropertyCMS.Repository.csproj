@@ -12,12 +12,14 @@
     <None Remove="Models\" />
     <None Remove="Contexts\" />
     <None Remove="Models\Mapping\" />
+    <None Remove="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
     <Folder Include="Models\" />
     <Folder Include="Contexts\" />
     <Folder Include="Models\Mapping\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\E-PropertyCMS.Domain\E-PropertyCMS.Domain.csproj" />

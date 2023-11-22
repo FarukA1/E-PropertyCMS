@@ -48,7 +48,7 @@ public class CoreContext : DbContext, ICoreContext
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             builder.UseNpgsql(connectionString);
 
-            return new CoreContext(builder.Options);
+            return new CoreContext(builder.Options); 
         }
     }
 
@@ -62,8 +62,7 @@ public class CoreContext : DbContext, ICoreContext
         modelBuilder.Entity<ClientDbModel>().Property(t => t.Email).HasMaxLength(50);
         modelBuilder.Entity<ClientDbModel>().Property(t => t.Phone).HasMaxLength(20);
         modelBuilder.Entity<ClientDbModel>().HasOne(t => t.Address).WithMany().HasForeignKey(v => v.AddressId);
-        modelBuilder.Entity<ClientDbModel>().HasMany(t => t.Properties).WithOne(v => v.PropertyOwner).HasForeignKey(property => property.PropertyOwnerId);
-        modelBuilder.Entity<ClientDbModel>().HasMany(t => t.Properties).WithOne(v => v.CurrentOccupant).HasForeignKey(property => property.CurrentOccupantId);
+        modelBuilder.Entity<ClientDbModel>().HasMany(t => t.Properties).WithOne(v => v.Client).HasForeignKey(property => property.clientId);
 
         modelBuilder.Entity<AddressDbModel>().HasKey(t => t.Id);
         modelBuilder.Entity<AddressDbModel>().ToTable("Address");

@@ -139,26 +139,11 @@ namespace E_PropertyCMS.Repository.Repositories
             return property.AddToDomain();
         }
 
-        public async Task<Property> GetPropertyOwnerById(Guid clientId, Guid propertyId)
+        public async Task<Property> GetClientPropertyById(Guid clientId, Guid propertyId)
         {
             var property = await _propertyContext.Property
                 .Include(v => v.Address)
-				.Where(v => v.PropertyOwner.Key == clientId)
-                .FirstOrDefaultAsync(v => v.Key == propertyId);
-
-            if (property == null)
-            {
-                return null;
-            }
-
-            return property.AddToDomain();
-        }
-
-        public async Task<Property> GetPropertyOccupantById(Guid clientId, Guid propertyId)
-        {
-            var property = await _propertyContext.Property
-                .Include(v => v.Address)
-                .Where(v => v.CurrentOccupant.Key == clientId)
+                .Where(v => v.Client.Key == clientId)
                 .FirstOrDefaultAsync(v => v.Key == propertyId);
 
             return property.AddToDomain();
@@ -183,9 +168,8 @@ namespace E_PropertyCMS.Repository.Repositories
 				exist = new PropertyDbModel()
 				{
 					Key = property.Id,
-					PropertyOwner = client,
-					PropertyOwnerId = client.Id,
-					CurrentOccupant = null
+					Client = client,
+					clientId = client.Id,
 				};
 
                 _propertyContext.Property.Add(exist);

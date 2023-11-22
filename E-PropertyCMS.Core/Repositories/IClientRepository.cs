@@ -14,8 +14,7 @@ namespace E_PropertyCMS.Core.Repositories
         Task<Client> GetClientById(Guid Id);
         Task<Client> StoreClient(Client client);
         Task<Property> GetPropertyById(Guid Id);
-        Task<Property> GetPropertyOwnerById(Guid clientId, Guid propertyId);
-        Task<Property> GetPropertyOccupantById(Guid clientId, Guid propertyId);
+        Task<Property> GetClientPropertyById(Guid clientId, Guid propertyId);
         Task<Property> StoreProperty(Guid clientId, Property property);
         Task<Address> GetClientAddress(Guid clientId, Guid addressId);
         Task<Address> StoreClientAddress(Guid clientId, Address address);

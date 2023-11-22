@@ -12,12 +12,12 @@ namespace E_PropertyCMS.Api.Controllers
     [ValidateRequest]
     public class CaseController : ApiController
     {
-        private readonly ICaseService _caseService;
+        //private readonly ICaseService _caseService;
 
-        public CaseController(ICaseService caseService)
-        {
-            _caseService = caseService;
-        }
+        //public CaseController(ICaseService caseService)
+        //{
+        //    _caseService = caseService;
+        //}
     }
 }
 

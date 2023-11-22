@@ -9,8 +9,28 @@
 
   <ItemGroup>
     <None Remove="Services\" />
+    <None Remove="Repositories\" />
+    <None Remove="CustomException\" />
+    <None Remove="Application\" />
+    <None Remove="Application\Dto\" />
+    <None Remove="Wrappers\" />
+    <None Remove="Helper\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="CustomException\" />
+    <Folder Include="Application\" />
+    <Folder Include="Application\Dto\" />
+    <Folder Include="Wrappers\" />
+    <Folder Include="Helper\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\E-PropertyCMS.Domain\E-PropertyCMS.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
   </ItemGroup>
 </Project>

@@ -8,8 +8,10 @@ namespace E_PropertyCMS.Repository.Models
         public int Id { get; set; }
         public Guid Key { get; set; }
         public CaseTypeDbModel CaseType { get; set; }
-        public List<ClientDbModel> Clients { get; set; }
-        public List<PropertyDbModel> Properties { get; set; }
+        public ClientDbModel Client { get; set; }
+        public int ClientId { get; set; }
+        public PropertyDbModel Property { get; set; }
+        public int PropertyId { get; set; }
         public CaseStatusDbModel CaseStatus { get; set; }
 
         public DateTime CreatedOn { get; set; }
@@ -24,16 +26,6 @@ namespace E_PropertyCMS.Repository.Models
                 CaseStatus = CaseStatus.AddToDomain()
                 //CreatedOn = DateTime.Now
             };
-
-            foreach(var client in Clients)
-            {
-                kase.Clients.Add(client.AddToDomain());
-            }
-
-            foreach (var property in Properties)
-            {
-                kase.Properties.Add(property.AddToDomain());
-            }
 
             return kase;
         }

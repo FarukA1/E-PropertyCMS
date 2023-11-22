@@ -9,11 +9,13 @@ namespace E_PropertyCMS.Repository.Models
 	{
         public int Id { get; set; }
         public Guid Key { get; set; }
+        public string Title { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
         public AddressDbModel Address { get; set; }
+        public int AddressId { get; set; }
         public ClientType ClientType { get; set; }
 
         public List<PropertyDbModel> Properties { get; set; }
@@ -23,6 +25,7 @@ namespace E_PropertyCMS.Repository.Models
             var client = new Client()
             {
                 Id = Key,
+                Title = Title,
                 FirstName = FirstName,
                 LastName = LastName,
                 Email = Email,
@@ -41,6 +44,7 @@ namespace E_PropertyCMS.Repository.Models
 
         public void AddFromDomain(Client client)
         {
+            Title = Title;
             FirstName = client.FirstName;
             LastName = client.LastName;
             Email = client.Email;

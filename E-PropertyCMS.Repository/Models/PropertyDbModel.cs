@@ -14,6 +14,7 @@ namespace E_PropertyCMS.Repository.Models
         public ClientDbModel CurrentOccupant { get; set; }
         public int CurrentOccupantId { get; set; }
         public AddressDbModel Address { get; set; }
+        public int AddressId { get; set; }
         public string Price { get; set; }
         public PropertyType PropertyType { get; set; }
         public string Description { get; set; }

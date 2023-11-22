@@ -9,10 +9,8 @@ namespace E_PropertyCMS.Repository.Models
 	{
         public int Id { get; set; }
         public Guid Key { get; set; }
-        public ClientDbModel PropertyOwner { get; set; }
-        public int PropertyOwnerId { get; set; }
-        public ClientDbModel CurrentOccupant { get; set; }
-        public int CurrentOccupantId { get; set; }
+        public ClientDbModel Client { get; set; }
+        public int clientId { get; set; }
         public AddressDbModel Address { get; set; }
         public int AddressId { get; set; }
         public string Price { get; set; }

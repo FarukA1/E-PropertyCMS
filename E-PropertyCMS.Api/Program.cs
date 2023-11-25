@@ -1,4 +1,5 @@
-﻿using E_PropertyCMS.Core.Repositories;
+﻿using E_PropertyCMS.Core.Application.ConvertDtoToDomain;
+using E_PropertyCMS.Core.Repositories;
 using E_PropertyCMS.Core.Services;
 using E_PropertyCMS.Repository;
 using E_PropertyCMS.Repository.Contexts;
@@ -13,15 +14,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddTransient<ICoreContext, CoreContext>();
-builder.Services.AddTransient<IUnitOfWork, CoreContext>();
-builder.Services.AddTransient<IClientContext, CoreContext>();
-builder.Services.AddTransient<IPropertyContext, CoreContext>();
-builder.Services.AddTransient<ICaseContext, CoreContext>();
+builder.Services.AddScoped<ICoreContext, CoreContext>();
 
 builder.Services.AddTransient<IClientRepository, ClientRepository>();
 builder.Services.AddTransient<ICaseRepository, CaseRepository>();
 
+builder.Services.AddTransient<IDtoToDomain, DtoToDomain>();
 builder.Services.AddTransient<IClientService, ClientService>();
 builder.Services.AddTransient<ICaseService, CaseService>();
 

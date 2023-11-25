@@ -15,6 +15,8 @@
     <None Remove="Application\Dto\" />
     <None Remove="Wrappers\" />
     <None Remove="Helper\" />
+    <None Remove="Shaper\" />
+    <None Remove="Application\ConvertDtoToDomain\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -24,6 +26,8 @@
     <Folder Include="Application\Dto\" />
     <Folder Include="Wrappers\" />
     <Folder Include="Helper\" />
+    <Folder Include="Shaper\" />
+    <Folder Include="Application\ConvertDtoToDomain\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\E-PropertyCMS.Domain\E-PropertyCMS.Domain.csproj" />

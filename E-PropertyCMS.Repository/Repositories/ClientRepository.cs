@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using E_PropertyCMS.Core.CustomException;
 using E_PropertyCMS.Core.Repositories;
+using E_PropertyCMS.Core.Services;
 using E_PropertyCMS.Domain.Enumeration;
 using E_PropertyCMS.Domain.Filter;
 using E_PropertyCMS.Domain.Model;
@@ -12,36 +15,34 @@ namespace E_PropertyCMS.Repository.Repositories
 {
 	public class ClientRepository : IClientRepository
     {
-		private readonly IClientContext _clientContext;
-        private readonly IPropertyContext _propertyContext;
+        private readonly ICoreContext _coreContext;
 
-		public ClientRepository(IClientContext clientContext, IPropertyContext propertyContext)
+		public ClientRepository(ICoreContext coreContext)
 		{
-			_clientContext = clientContext;
-			_propertyContext = propertyContext;
+            _coreContext = coreContext;
 		}
 
-		public async Task<List<Client>> GetClients()
-		{
-			var clients = new List<Client>();
+        public async Task<List<Client>> GetClients()
+        {
+            var clients = new List<Client>();
 
-			var clientsDbModel = await _clientContext.Client
+            var clientsDbModel = await _coreContext.Client
                  .Include(v => v.Address)
                 .ToListAsync();
 
-			foreach (var clientDbModel in clientsDbModel)
-			{
-				clients.Add(clientDbModel.AddToDomain());
-			}
+            foreach (var clientDbModel in clientsDbModel)
+            {
+                clients.Add(clientDbModel.AddToDomain());
+            }
 
-			return clients;
+            return clients;
         }
 
         public async Task<List<Client>> GetClients(PaginationFilter filter)
         {
             var clients = new List<Client>();
 
-            var clientsDbModel = await _clientContext.Client
+            var clientsDbModel = await _coreContext.Client
                  .Include(v => v.Address)
                  .Skip((filter.PageNumber - 1) * filter.PageSize)
                  .Take(filter.PageSize)
@@ -55,14 +56,15 @@ namespace E_PropertyCMS.Repository.Repositories
             return clients;
         }
 
-        public async Task<List<Client>> GetClientsByType(ClientType clientType)
-		{
+        public async Task<List<Client>> GetClientsByType(ClientType? clientType)
+        {
             var clients = new List<Client>();
 
-            var clientsDbModel = await _clientContext.Client
+            var clientsDbModel = await _coreContext.Client
                  .Include(v => v.Address)
+
                 .Where(v => v.ClientType == clientType)
-				.ToListAsync();
+                .ToListAsync();
 
             foreach (var clientDbModel in clientsDbModel)
             {
@@ -72,11 +74,11 @@ namespace E_PropertyCMS.Repository.Repositories
             return clients;
         }
 
-        public async Task<List<Client>> GetClientsByType(ClientType clientType, PaginationFilter filter)
+        public async Task<List<Client>> GetClientsByType(ClientType? clientType, PaginationFilter filter)
         {
             var clients = new List<Client>();
 
-            var clientsDbModel = await _clientContext.Client
+            var clientsDbModel = await _coreContext.Client
                  .Include(v => v.Address)
                  .Skip((filter.PageNumber - 1) * filter.PageSize)
                  .Take(filter.PageSize)
@@ -93,21 +95,54 @@ namespace E_PropertyCMS.Repository.Repositories
 
         public async Task<Client> GetClientById(Guid Id)
 		{
-			var client = await _clientContext.Client
-				.Include(v => v.Address)
-				.FirstOrDefaultAsync(v => v.Key == Id);
-
-            if (client == null)
-            {
-                return null;
-            }
+			var client = await _coreContext.Client
+                .Where(v => v.Key == Id)
+                .Include(v => v.Address)
+                //.Include(v => v.Properties)
+                //    .ThenInclude(x => x.Address)
+                //.Include(v => v.Properties)
+                //    .ThenInclude(y => y.Rooms)
+                .FirstOrDefaultAsync();
 
             return client.AddToDomain();
 		}
 
-		public async Task<Client> StoreClient(Client client)
+        public async Task<List<Property>> GetClientProperties(Guid clientId)
+        {
+            var propertyList = new List<Property>();
+
+            var client = await _coreContext.Client.Where(v => v.Key == clientId).FirstOrDefaultAsync();
+
+            if(client == null)
+            {
+                throw new EPropertyCMSException("This client does not exist");
+            }
+
+            var properties = await _coreContext.Property
+                .Where(v => v.clientId == client.Id)
+                .Include(v => v.Address)
+                .Include(v => v.Rooms)
+                .ToListAsync();
+
+            if (!properties.Any())
+            {
+                return null;
+            }
+
+            foreach(var propertydb in properties)
+            {
+                var propertydomain = propertydb.AddToDomain();
+
+                propertyList.Add(propertydomain);
+            }
+
+            return propertyList;
+        }
+
+
+        public async Task<Client> StoreClient(Client client)
 		{
-			var exist = await _clientContext.Client
+			var exist = await _coreContext.Client
 				.Include(v => v.Address)
 				.FirstOrDefaultAsync(v => v.Key == client.Id);
 
@@ -117,18 +152,76 @@ namespace E_PropertyCMS.Repository.Repositories
 				{
 					Key = client.Id,
 				};
-				_clientContext.Client.Add(exist);
+
+                _coreContext.Client.Add(exist);
+            }
+
+            var clientAddressExist = await AddAddress(client.Address);
+
+            exist.Address = clientAddressExist;
+            exist.AddressId = clientAddressExist.Id;
+
+            if(client.Properties.Any())
+            {
+                foreach(var property in client.Properties)
+                {
+                    var propertyExist = await _coreContext.Property.FirstOrDefaultAsync(v => v.Key == property.Id);
+
+                    if(propertyExist == null)
+                    {
+                        propertyExist = new PropertyDbModel()
+                        {
+                            Key = property.Id,
+                            Client = exist,
+                            clientId = exist.Id
+                        };
+                    }
+
+                    var propertyAddressExist = await AddAddress(property.Address);
+
+                    propertyExist.Address = propertyAddressExist;
+                    propertyExist.AddressId = propertyAddressExist.Id;
+
+                    foreach (var room in property.Rooms)
+                    {
+                        var roomExist = await _coreContext.Room.FirstOrDefaultAsync(v => v.Key == room.Id);
+
+                        if(roomExist == null)
+                        {
+                            roomExist = new RoomDbModel()
+                            {
+                                Key = room.Id,
+                                Property = propertyExist,
+                                PropertyId = propertyExist.Id
+
+                            };
+                        }
+
+                        _coreContext.Room.Add(roomExist);
+                        roomExist.AddFromDomain(room);
+
+                        propertyExist.Rooms.Add(roomExist);
+                    }
+
+                    _coreContext.Property.Add(propertyExist);
+                    propertyExist.AddFromDomain(property);
+
+                    exist.Properties.Add(propertyExist);
+                }
             }
 
             exist.AddFromDomain(client);
+            await _coreContext.SaveChangesAsync();
 
-			return exist.AddToDomain();
+            return exist.AddToDomain();
 		}
 
         public async Task<Property> GetPropertyById(Guid Id)
         {
-            var property = await _propertyContext.Property
+
+            var property = await _coreContext.Property
                 .Include(v => v.Address)
+                .Include(v => v.Rooms)
                 .FirstOrDefaultAsync(v => v.Key == Id);
 
 			if(property == null)
@@ -139,19 +232,9 @@ namespace E_PropertyCMS.Repository.Repositories
             return property.AddToDomain();
         }
 
-        public async Task<Property> GetClientPropertyById(Guid clientId, Guid propertyId)
-        {
-            var property = await _propertyContext.Property
-                .Include(v => v.Address)
-                .Where(v => v.Client.Key == clientId)
-                .FirstOrDefaultAsync(v => v.Key == propertyId);
-
-            return property.AddToDomain();
-        }
-
         public async Task<Property> StoreProperty(Guid clientId, Property property)
 		{
-			var client = await _clientContext.Client.
+			var client = await _coreContext.Client.
 				Where(v => v.Key == clientId).FirstOrDefaultAsync();
 
 			if(client == null)
@@ -159,7 +242,7 @@ namespace E_PropertyCMS.Repository.Repositories
 				return null;
 			}
 
-			var exist = await _propertyContext.Property
+			var exist = await _coreContext.Property
 				.Where(v => v.Key == property.Id)
 				.FirstOrDefaultAsync();
 
@@ -172,7 +255,7 @@ namespace E_PropertyCMS.Repository.Repositories
 					clientId = client.Id,
 				};
 
-                _propertyContext.Property.Add(exist);
+                _coreContext.Property.Add(exist);
             }
 
 
@@ -190,52 +273,51 @@ namespace E_PropertyCMS.Repository.Repositories
 				return null;
             }
 
-            var property = await _clientContext.Address
+            var property = await _coreContext.Address
                 .FirstOrDefaultAsync(v => v.Key == addressId);
 
             return property.AddToDomain();
         }
 
-
-        public async Task<Address> StoreClientAddress(Guid clientId, Address address)
-		{
-            var exist = await _clientContext.Client.FirstOrDefaultAsync(v => v.Key == clientId);
-
-			if(exist != null)
-			{
-				exist.Address = new AddressDbModel()
-				{
-					Key = address.Id
-				};
-			_clientContext.Address.Add(exist.Address);
-			}
-
-			exist.Address.AddFromDomain(address);
-
-			return exist.Address.AddToDomain();
-        }
-
-        public async Task<Address> StorePropertyAddress(Guid propertyId, Address address)
+        public async Task<AddressDbModel> AddAddress(Address address)
         {
-            var exist = await _propertyContext.Property.FirstOrDefaultAsync(v => v.Key == propertyId);
+            var exist = await _coreContext.Address.FirstOrDefaultAsync(v => v.Key == address.Id);
 
-            if (exist != null)
+            if (exist == null)
             {
-                exist.Address = new AddressDbModel()
+                exist = new AddressDbModel()
                 {
                     Key = address.Id
                 };
-                _clientContext.Address.Add(exist.Address);
+                _coreContext.Address.Add(exist);
             }
 
-            exist.Address.AddFromDomain(address);
+            exist.AddFromDomain(address);
 
-            return exist.Address.AddToDomain();
+            return exist;
         }
 
-        public async Task<List<Room>> GetPropertyRooms(Guid propertyId)
+        public async Task<Address> StoreAddress(Address address)
         {
-			var property = await GetPropertyById(propertyId);
+            var exist = await _coreContext.Address.FirstOrDefaultAsync(v => v.Key == address.Id);
+
+            if(exist == null)
+            {
+                exist = new AddressDbModel()
+                {
+                    Key = address.Id
+                };
+                _coreContext.Address.Add(exist);
+            }
+
+            exist.AddFromDomain(address);
+
+            return exist.AddToDomain();
+        }
+
+        public async Task<List<Room>> GetRooms(Guid propertyId)
+        {
+            var property = await _coreContext.Property.Where(v => v.Key == propertyId).FirstOrDefaultAsync();
 
 			if(property == null)
 			{
@@ -244,7 +326,7 @@ namespace E_PropertyCMS.Repository.Repositories
 
             var rooms = new List<Room>();
 
-            var roomsDbModel = await _propertyContext.Room
+            var roomsDbModel = await _coreContext.Room.Where(v => v.PropertyId == property.Id)
                 .ToListAsync();
 
             foreach (var roomDbModel in roomsDbModel)
@@ -253,6 +335,34 @@ namespace E_PropertyCMS.Repository.Repositories
             }
 
             return rooms;
+        }
+
+        public async Task<Room> StoreRoom(Guid propertyId, Room room)
+        {
+            var property = await _coreContext.Property.FirstOrDefaultAsync(v => v.Key == propertyId);
+
+            if(property == null)
+            {
+                throw new EPropertyCMSException("Cannot load load property");
+            }
+
+            var exist = await _coreContext.Room.FirstOrDefaultAsync(v => v.Key == room.Id);
+
+            if(exist == null)
+            {
+                exist = new RoomDbModel()
+                {
+                    Key = room.Id,
+                    PropertyId = property.Id,
+                    Property = property
+                };
+
+                _coreContext.Room.Add(exist);
+            }
+
+            exist.AddFromDomain(room);
+
+            return exist.AddToDomain();
         }
     }
 }

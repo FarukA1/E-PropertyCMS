@@ -15,7 +15,7 @@ namespace E_PropertyCMS.Repository.Models
         public int AddressId { get; set; }
         public string Price { get; set; }
         public PropertyType PropertyType { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
         public PropertyStatus PropertyStatus { get; set; }
         public List<RoomDbModel> Rooms { get; set; }
 
@@ -24,16 +24,23 @@ namespace E_PropertyCMS.Repository.Models
             var property = new Property()
             {
                 Id = Key,
-                Address = Address.AddToDomain(),
                 Price = Price,
                 PropertyType = PropertyType,
                 Description = Description,
                 PropertyStatus = PropertyStatus
             };
 
-            foreach(var room in Rooms)
+            if(Address != null)
             {
-                property.Rooms.Add(room.AddToDomain());
+                property.Address = Address.AddToDomain();
+            }
+
+            if(Rooms != null)
+            {
+                foreach(var room in Rooms)
+                {
+                    property.Rooms.Add(room.AddToDomain());
+                }
             }
 
             return property;

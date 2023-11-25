@@ -9,11 +9,12 @@ namespace E_PropertyCMS.Repository.Repositories
 {
     public class CaseRepository : ICaseRepository
     {
-        private readonly ICaseContext _caseContext;
+        //private readonly ICaseContext _caseContext;
+        private readonly ICoreContext _coreContext;
 
-        public CaseRepository(ICaseContext caseContext)
+        public CaseRepository(ICoreContext coreContext)
         {
-            _caseContext = caseContext;
+            _coreContext = coreContext;
         }
 
         public async Task<List<Case>> GetCases()
@@ -21,7 +22,7 @@ namespace E_PropertyCMS.Repository.Repositories
             {
                 var cases = new List<Case>();
 
-                var casesDbModel = await _caseContext.Case
+                var casesDbModel = await _coreContext.Case
                      .Include(v => v.Property)
                      .Include(v => v.Client)
                     .ToListAsync();
@@ -38,7 +39,7 @@ namespace E_PropertyCMS.Repository.Repositories
 
         public async Task<Case> GetCaseById(Guid Id)
         {
-            var kase = await _caseContext.Case
+            var kase = await _coreContext.Case
                      .Include(v => v.Property)
                      .Include(v => v.Client)
                 .FirstOrDefaultAsync(v => v.Key == Id);
@@ -55,7 +56,7 @@ namespace E_PropertyCMS.Repository.Repositories
         {
             var cases = new List<Case>();
 
-            var casesDbModel = await _caseContext.Case
+            var casesDbModel = await _coreContext.Case
                 .Include(v => v.Client)
                 .Where(x => x.Client.Key == clientId)
                 .ToListAsync();
@@ -75,7 +76,7 @@ namespace E_PropertyCMS.Repository.Repositories
         {
             var cases = new List<Case>();
 
-            var casesDbModel = await _caseContext.Case
+            var casesDbModel = await _coreContext.Case
                 .Where(x => x.CaseType.Type == caseType)
                 .ToListAsync();
 
@@ -94,7 +95,7 @@ namespace E_PropertyCMS.Repository.Repositories
         {
             var cases = new List<Case>();
 
-            var casesDbModel = await _caseContext.Case
+            var casesDbModel = await _coreContext.Case
                 .Where(x => x.CaseStatus.Status == caseStatus)
                 .ToListAsync();
 
@@ -111,7 +112,7 @@ namespace E_PropertyCMS.Repository.Repositories
 
         public async Task<Case> StoreCase(Case kase)
         {
-            var exist = await _caseContext.Case
+            var exist = await _coreContext.Case
                 .Include(v => v.Client)
                 .Include(v => v.Property)
                 .FirstOrDefaultAsync(v => v.Key == kase.Id);
@@ -122,7 +123,7 @@ namespace E_PropertyCMS.Repository.Repositories
                 {
                     Key = kase.Id
                 };
-                _caseContext.Case.Add(exist);
+                _coreContext.Case.Add(exist);
             }
             exist.AddFromDomain(kase);
 

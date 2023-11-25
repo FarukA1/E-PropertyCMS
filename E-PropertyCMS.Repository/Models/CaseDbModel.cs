@@ -7,12 +7,13 @@ namespace E_PropertyCMS.Repository.Models
 	{
         public int Id { get; set; }
         public Guid Key { get; set; }
+        public string Reference { get; set; }
         public CaseTypeDbModel CaseType { get; set; }
         public int CaseTypeId { get; set; }
         public ClientDbModel Client { get; set; }
         public int ClientId { get; set; }
-        public PropertyDbModel Property { get; set; }
-        public int PropertyId { get; set; }
+        public PropertyDbModel Property { get; set; }  
+        public int? PropertyId { get; set; }
         public CaseStatusDbModel CaseStatus { get; set; }
         public int CaseStatusId { get; set; }
 
@@ -24,10 +25,20 @@ namespace E_PropertyCMS.Repository.Models
             var kase = new Case()
             {
                 Id = Key,
-                CaseType = CaseType.AddToDomain(),
-                CaseStatus = CaseStatus.AddToDomain()
-                //CreatedOn = DateTime.Now
+                Reference = Reference,
+                CreatedOn = CreatedOn,
+                LastModifiedOn = LastModifiedOn
             };
+
+            if(CaseType != null)
+            {
+                kase.CaseType = CaseType.AddToDomain();
+            }
+
+            if (CaseStatus != null)
+            {
+                kase.CaseStatus = CaseStatus.AddToDomain();
+            }
 
             return kase;
         }

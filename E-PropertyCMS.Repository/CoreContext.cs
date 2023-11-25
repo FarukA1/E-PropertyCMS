@@ -28,11 +28,6 @@ public class CoreContext : DbContext, ICoreContext
 
     }
 
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-    {
-        return await base.SaveChangesAsync(cancellationToken);
-    }
-
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<CoreContext>
     {
         public CoreContext CreateDbContext(string[] args)
@@ -87,6 +82,7 @@ public class CoreContext : DbContext, ICoreContext
         modelBuilder.Entity<CaseDbModel>().HasKey(t => t.Id);
         modelBuilder.Entity<CaseDbModel>().ToTable("Case");
         modelBuilder.Entity<CaseDbModel>().HasOne(t => t.Client).WithMany().HasForeignKey(v => v.ClientId);
+        modelBuilder.Entity<CaseDbModel>().Property(t => t.Reference).HasMaxLength(50);
         modelBuilder.Entity<CaseDbModel>().HasOne(t => t.Property).WithMany().HasForeignKey(v => v.PropertyId);
         modelBuilder.Entity<CaseDbModel>().HasOne(t => t.CaseType).WithMany().HasForeignKey(v => v.CaseTypeId);
         modelBuilder.Entity<CaseDbModel>().HasOne(t => t.CaseStatus).WithMany().HasForeignKey(v => v.CaseStatusId);
@@ -100,6 +96,11 @@ public class CoreContext : DbContext, ICoreContext
         modelBuilder.Entity<CaseStatusDbModel>().Property(t => t.Status).HasMaxLength(100);
 
         base.OnModelCreating(modelBuilder);
+    }
+
+    public async Task<int> SaveChangesAsync()
+    {
+        return await base.SaveChangesAsync();
     }
 
 }

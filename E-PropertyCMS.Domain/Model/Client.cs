@@ -6,7 +6,7 @@ namespace E_PropertyCMS.Domain.Model
 	public class Client
 	{
         public Guid Id { get; set; }
-        public string Title { get; set; }
+        public string? Title { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -15,6 +15,11 @@ namespace E_PropertyCMS.Domain.Model
         public ClientType ClientType { get; set; }
 
         public List<Property> Properties { get; set; }
+
+        public Client()
+        {
+            Properties = new List<Property>();
+        }
     }
 }
 

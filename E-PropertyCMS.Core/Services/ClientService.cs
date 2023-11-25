@@ -1,4 +1,5 @@
 ﻿using System;
+using E_PropertyCMS.Core.Application.ConvertDtoToDomain;
 using E_PropertyCMS.Core.Application.Dto;
 using E_PropertyCMS.Core.CustomException;
 using E_PropertyCMS.Core.Repositories;
@@ -10,26 +11,38 @@ namespace E_PropertyCMS.Core.Services
 {
 	public class ClientService : IClientService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IDtoToDomain _dtoToDomain;
         private readonly IClientRepository _clientRepository;
 
-        public ClientService(IClientRepository clientRepository, IUnitOfWork unitOfWork)
+        public ClientService(IDtoToDomain dtoToDomain, IClientRepository clientRepository)
 		{
-			_unitOfWork = unitOfWork;
+            _dtoToDomain = dtoToDomain;
 			_clientRepository = clientRepository;
 		}
 
-		public async Task<List<Client>> GetClients()
-		{
-			var clients = await _clientRepository.GetClients();
+        public async Task<List<Client>> GetClients()
+        {
+            var clients = await _clientRepository.GetClients();
 
-			if(clients == null)
-			{
+            if (clients == null)
+            {
                 throw new EPropertyCMSException();
             }
 
-			return clients;
-		}
+            return clients;
+        }
+
+        public async Task<int> ClientsTotal()
+        {
+            var clients = await GetClients();
+
+            if (clients == null)
+            {
+                return 0;
+            }
+
+            return clients.Count();
+        }
 
         public async Task<List<Client>> GetClients(PaginationFilter filter)
         {
@@ -43,7 +56,7 @@ namespace E_PropertyCMS.Core.Services
             return clients;
         }
 
-        public async Task<List<Client>> GetClientsByType(ClientType clientType)
+        public async Task<List<Client>> GetClientsByType(ClientType? clientType)
         {
             var client = await _clientRepository.GetClientsByType(clientType);
 
@@ -55,7 +68,19 @@ namespace E_PropertyCMS.Core.Services
             return client;
         }
 
-        public async Task<List<Client>> GetClientsByType(ClientType clientType, PaginationFilter filter)
+        public async Task<int> ClientsTypeTotal(ClientType? clientType)
+        {
+            var clientsType = await GetClientsByType(clientType);
+
+            if (clientsType == null)
+            {
+                return 0;
+            }
+
+            return clientsType.Count();
+        }
+
+        public async Task<List<Client>> GetClientsByType(ClientType? clientType, PaginationFilter filter)
         {
             var client = await _clientRepository.GetClientsByType(clientType, filter);
 
@@ -71,102 +96,66 @@ namespace E_PropertyCMS.Core.Services
 		{
 			var client = await _clientRepository.GetClientById(clientId);
 
-			if(client == null)
-			{
-				throw new EPropertyCMSException();
-			}
-
 			return client;
 		}
 
-		public async Task<Client> StoreClient(ClientDto dto)
-		{
-			var client = new Client()
-			{
-				Id = Guid.NewGuid()
-			};
+        public async Task<List<Property>> GetClientProperties(Guid clientId)
+        {
+            var properties = await _clientRepository.GetClientProperties(clientId);
 
-			if(dto.FirstName != null)
-			{
-				client.FirstName = dto.FirstName;
-			}
-
-			if(dto.LastName != null)
-			{
-				client.LastName = dto.LastName;
-			}
-
-            if (dto.Phone != null)
+            if (!properties.Any())
             {
-                client.Phone = dto.Phone;
+                return null;
             }
 
-			if (dto.ClientType != null)
-			{
-				client.ClientType = dto.ClientType;
-			}
+            return properties;
+        }
+
+
+        public async Task<Client> StoreClient(ClientDto dto)
+		{
+            var client = await _dtoToDomain.GetClient(dto);
+
+            if(dto.Address != null)
+            {
+                var address = await _dtoToDomain.GetAddress(dto.Address);
+
+                client.Address = address;
+            }
+
+            if(dto.Properties.Any())
+            {
+                foreach(var dtoProperty in dto.Properties)
+                {
+                    var property = await _dtoToDomain.GetProperty(dtoProperty);
+
+                    if (dtoProperty.Address != null)
+                    {
+                        var propertyAddress = await _dtoToDomain.GetAddress(dtoProperty.Address);
+
+                        property.Address = propertyAddress;
+                    }
+
+                    if(dtoProperty.Rooms.Any())
+                    {
+                        foreach(var dtoRoom in dtoProperty.Rooms)
+                        {
+                            var room = await _dtoToDomain.GetRoom(dtoRoom);
+
+                            property.Rooms.Add(room);
+                        }
+                    }
+
+                    client.Properties.Add(property);
+                }
+            }
 
 			await _clientRepository.StoreClient(client);
-
-			if(dto.Address != null)
-			{
-				client.Address = new Address()
-				{
-					Id = Guid.NewGuid()
-				};
-
-                if (dto.Address.Number != null)
-				{
-                    client.Address.Number = dto.Address.Number;
-                }
-
-                if (dto.Address.StreetName != null)
-                {
-                    client.Address.StreetName = dto.Address.StreetName;
-                }
-
-                if (dto.Address.City != null)
-                {
-                    client.Address.City = dto.Address.City;
-                }
-
-                if (dto.Address.Number != null)
-                {
-                    client.Address.PostCode = dto.Address.PostCode;
-                }
-
-                if (dto.Address.Number != null)
-                {
-                    client.Address.Country = dto.Address.Country;
-                }
-
-                await _clientRepository.StoreClientAddress(client.Id, client.Address);
-            }
-
-            if (!dto.Properties.Any())
-            {
-                var properties = new List<Property>();
-
-                foreach (var dtoProperty in dto.Properties)
-                {
-                    var property = await StoreProperty(client.Id, dtoProperty);
-
-                    properties.Add(property);
-                }
-
-                client.Properties = properties;
-            }
-
-            _unitOfWork.SaveChangesAsync();
 
             return client;
 
         }
 
-        public async Task<Property> StoreProperty(Guid Id, PropertyDto dto)
-        {
-            return null;
-        }
     }
 }
 

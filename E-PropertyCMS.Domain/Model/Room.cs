@@ -5,7 +5,7 @@ namespace E_PropertyCMS.Domain.Model
 	{
         public Guid Id { get; set; }
         public string RoomType { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
     }
 }
 

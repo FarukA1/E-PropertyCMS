@@ -9,7 +9,7 @@ namespace E_PropertyCMS.Repository.Models
 	{
         public int Id { get; set; }
         public Guid Key { get; set; }
-        public string Title { get; set; }
+        public string? Title { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -30,13 +30,20 @@ namespace E_PropertyCMS.Repository.Models
                 LastName = LastName,
                 Email = Email,
                 Phone = Phone,
-                Address = Address.AddToDomain(),
                 ClientType = ClientType
             };
 
-            foreach(var property in Properties)
+            if(Address != null)
             {
-                client.Properties.Add(property.AddToDomain());
+                client.Address = Address.AddToDomain();
+            }
+
+            if(Properties != null)
+            {
+                foreach(var property in Properties)
+                {
+                    client.Properties.Add(property.AddToDomain());
+                }
             }
 
             return client;
@@ -44,7 +51,7 @@ namespace E_PropertyCMS.Repository.Models
 
         public void AddFromDomain(Client client)
         {
-            Title = Title;
+            Title = client.Title;
             FirstName = client.FirstName;
             LastName = client.LastName;
             Email = client.Email;

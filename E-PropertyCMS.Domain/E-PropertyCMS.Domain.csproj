@@ -11,10 +11,12 @@
     <None Remove="Model\" />
     <None Remove="Enumeration\" />
     <None Remove="Filter\" />
+    <None Remove="Utilities\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
     <Folder Include="Enumeration\" />
     <Folder Include="Filter\" />
+    <Folder Include="Utilities\" />
   </ItemGroup>
 </Project>

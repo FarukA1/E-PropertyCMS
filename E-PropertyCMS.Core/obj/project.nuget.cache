@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+tkjSW/pmttMy/yik+DS1eagqSb/p+KyzGZnWP9mTTL1G0ZS98G0V5sNuOlS1CC0gy8MMq8/knFeuM6Ki3Rm6Q==",
+  "dgSpecHash": "zWj2hsI0RzctgdG+cUv3JJV6iqQFokkrPM+m4frMsiJ4TM2hFDsvWOaQynEZpFoNjeYh+VkAGkEYj+XQFaVLRQ==",
   "success": true,
-  "projectFilePath": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Core/E-PropertyCMS.Core.csproj",
+  "projectFilePath": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Core/E-PropertyCMS.Core.csproj",
   "expectedPackageFiles": [
     "/Users/farukawofeso/.nuget/packages/microsoft.aspnetcore.webutilities/2.2.0/microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
     "/Users/farukawofeso/.nuget/packages/microsoft.extensions.dependencyinjection/6.0.0/microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",

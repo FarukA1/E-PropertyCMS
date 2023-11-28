@@ -1,0 +1,12 @@
+/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/bin/Debug/net6.0/E-PropertyCMS.Domain.deps.json
+/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/bin/Debug/net6.0/E-PropertyCMS.Domain.dll
+/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/bin/Debug/net6.0/E-PropertyCMS.Domain.pdb
+/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/obj/Debug/net6.0/E-PropertyCMS.Domain.csproj.AssemblyReference.cache
+/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/obj/Debug/net6.0/E-PropertyCMS.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/obj/Debug/net6.0/E-PropertyCMS.Domain.AssemblyInfoInputs.cache
+/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/obj/Debug/net6.0/E-PropertyCMS.Domain.AssemblyInfo.cs
+/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/obj/Debug/net6.0/E-PropertyCMS.Domain.csproj.CoreCompileInputs.cache
+/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/obj/Debug/net6.0/E-PropertyCMS.Domain.dll
+/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/obj/Debug/net6.0/refint/E-PropertyCMS.Domain.dll
+/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/obj/Debug/net6.0/E-PropertyCMS.Domain.pdb
+/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/obj/Debug/net6.0/ref/E-PropertyCMS.Domain.dll

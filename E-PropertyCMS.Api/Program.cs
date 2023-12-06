@@ -27,6 +27,8 @@ builder.Services.AddDbContext<CoreContext>(opt => opt.UseNpgsql(
     builder.Configuration.GetConnectionString("DefaultConnection")
 ));
 
+builder.Services.AddMemoryCache();
+
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<IUriService>(opt =>
 {

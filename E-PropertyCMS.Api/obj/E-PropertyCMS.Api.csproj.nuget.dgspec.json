@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Api/E-PropertyCMS.Api.csproj": {}
+    "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/E-PropertyCMS.Api.csproj": {}
   },
   "projects": {
-    "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Api/E-PropertyCMS.Api.csproj": {
+    "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/E-PropertyCMS.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Api/E-PropertyCMS.Api.csproj",
+        "projectUniqueName": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/E-PropertyCMS.Api.csproj",
         "projectName": "E-PropertyCMS.Api",
-        "projectPath": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Api/E-PropertyCMS.Api.csproj",
+        "projectPath": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/E-PropertyCMS.Api.csproj",
         "packagesPath": "/Users/farukawofeso/.nuget/packages/",
-        "outputPath": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Api/obj/",
+        "outputPath": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/farukawofeso/.nuget/NuGet/NuGet.Config"
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Repository/E-PropertyCMS.Repository.csproj": {
-                "projectPath": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Repository/E-PropertyCMS.Repository.csproj"
+              "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Repository/E-PropertyCMS.Repository.csproj": {
+                "projectPath": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Repository/E-PropertyCMS.Repository.csproj"
               }
             }
           }
@@ -90,14 +90,14 @@
         }
       }
     },
-    "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Core/E-PropertyCMS.Core.csproj": {
+    "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Core/E-PropertyCMS.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Core/E-PropertyCMS.Core.csproj",
+        "projectUniqueName": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Core/E-PropertyCMS.Core.csproj",
         "projectName": "E-PropertyCMS.Core",
-        "projectPath": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Core/E-PropertyCMS.Core.csproj",
+        "projectPath": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Core/E-PropertyCMS.Core.csproj",
         "packagesPath": "/Users/farukawofeso/.nuget/packages/",
-        "outputPath": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Core/obj/",
+        "outputPath": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Core/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/farukawofeso/.nuget/NuGet/NuGet.Config"
@@ -113,8 +113,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj": {
-                "projectPath": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj"
+              "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj": {
+                "projectPath": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj"
               }
             }
           }
@@ -132,6 +132,10 @@
             "Microsoft.AspNetCore.WebUtilities": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Caching.Memory": {
+              "target": "Package",
+              "version": "[6.0.0, )"
             },
             "Microsoft.Extensions.Logging": {
               "target": "Package",
@@ -162,14 +166,14 @@
         }
       }
     },
-    "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj": {
+    "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj",
+        "projectUniqueName": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj",
         "projectName": "E-PropertyCMS.Domain",
-        "projectPath": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj",
+        "projectPath": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj",
         "packagesPath": "/Users/farukawofeso/.nuget/packages/",
-        "outputPath": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/obj/",
+        "outputPath": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/farukawofeso/.nuget/NuGet/NuGet.Config"
@@ -216,14 +220,14 @@
         }
       }
     },
-    "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Repository/E-PropertyCMS.Repository.csproj": {
+    "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Repository/E-PropertyCMS.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Repository/E-PropertyCMS.Repository.csproj",
+        "projectUniqueName": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Repository/E-PropertyCMS.Repository.csproj",
         "projectName": "E-PropertyCMS.Repository",
-        "projectPath": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Repository/E-PropertyCMS.Repository.csproj",
+        "projectPath": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Repository/E-PropertyCMS.Repository.csproj",
         "packagesPath": "/Users/farukawofeso/.nuget/packages/",
-        "outputPath": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Repository/obj/",
+        "outputPath": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Repository/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/farukawofeso/.nuget/NuGet/NuGet.Config"
@@ -239,11 +243,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Core/E-PropertyCMS.Core.csproj": {
-                "projectPath": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Core/E-PropertyCMS.Core.csproj"
+              "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Core/E-PropertyCMS.Core.csproj": {
+                "projectPath": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Core/E-PropertyCMS.Core.csproj"
               },
-              "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj": {
-                "projectPath": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj"
+              "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj": {
+                "projectPath": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj"
               }
             }
           }

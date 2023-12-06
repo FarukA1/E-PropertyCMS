@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CE/Xr/5NhQ8zraa8k2Bd1WHZXmOS7QBjL9JKOblhiv4EGx1BaYVTJgjkowl6MorMuVj6YiKGfcAecnOR0QKdXQ==",
+  "dgSpecHash": "WN/cTQQjnbtLJGtvvpBDk3VyGl9gFMHOESVvjaziIlfeC0by9yxJrjP6u8c9+3hhFFDwp3IHUzFD6gYXWQPR0w==",
   "success": true,
-  "projectFilePath": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Api/E-PropertyCMS.Api.csproj",
+  "projectFilePath": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/E-PropertyCMS.Api.csproj",
   "expectedPackageFiles": [
     "/Users/farukawofeso/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/Users/farukawofeso/.nuget/packages/microsoft.aspnet.webapi.client/6.0.0/microsoft.aspnet.webapi.client.6.0.0.nupkg.sha512",

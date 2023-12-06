@@ -1,28 +1,44 @@
 ﻿using System;
 using E_PropertyCMS.Core.Application.ConvertDtoToDomain;
 using E_PropertyCMS.Core.Application.Dto;
+using E_PropertyCMS.Core.Caching;
 using E_PropertyCMS.Core.CustomException;
 using E_PropertyCMS.Core.Repositories;
 using E_PropertyCMS.Domain.Enumeration;
 using E_PropertyCMS.Domain.Filter;
 using E_PropertyCMS.Domain.Model;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace E_PropertyCMS.Core.Services
 {
 	public class ClientService : IClientService
     {
+        private readonly IMemoryCache _memoryCache;
         private readonly IDtoToDomain _dtoToDomain;
         private readonly IClientRepository _clientRepository;
 
-        public ClientService(IDtoToDomain dtoToDomain, IClientRepository clientRepository)
+        private string cacheKey = "clients";
+
+        public ClientService(IMemoryCache memoryCache, IDtoToDomain dtoToDomain, IClientRepository clientRepository)
 		{
+            _memoryCache = memoryCache;
             _dtoToDomain = dtoToDomain;
 			_clientRepository = clientRepository;
 		}
 
         public async Task<List<Client>> GetClients()
         {
-            var clients = await _clientRepository.GetClients();
+            
+            var cacheService = new CacheService<Client>(_memoryCache, cacheKey);
+
+            var clients = await cacheService.GetCacheData();
+
+            if(clients == null)
+            {
+                clients = await _clientRepository.GetClients();
+
+                await cacheService.StoreCacheData(clients);
+            }
 
             if (clients == null)
             {
@@ -34,7 +50,7 @@ namespace E_PropertyCMS.Core.Services
 
         public async Task<int> ClientsTotal()
         {
-            var clients = await GetClients();
+            var clients = await _clientRepository.GetClients();
 
             if (clients == null)
             {
@@ -46,7 +62,16 @@ namespace E_PropertyCMS.Core.Services
 
         public async Task<List<Client>> GetClients(PaginationFilter filter)
         {
-            var clients = await _clientRepository.GetClients(filter);
+            var cacheService = new CacheService<Client>(_memoryCache, cacheKey);
+
+            var clients = await cacheService.GetCacheData();
+
+            if (clients == null)
+            {
+                clients = await _clientRepository.GetClients(filter);
+
+                await cacheService.StoreCacheData(clients);
+            }
 
             if (clients == null)
             {
@@ -58,19 +83,30 @@ namespace E_PropertyCMS.Core.Services
 
         public async Task<List<Client>> GetClientsByType(ClientType? clientType)
         {
-            var client = await _clientRepository.GetClientsByType(clientType);
+            cacheKey += clientType.ToString();
 
-            if (client == null)
+            var cacheService = new CacheService<Client>(_memoryCache, cacheKey);
+
+            var clients = await cacheService.GetCacheData();
+
+            if (clients == null)
+            {
+                clients = await _clientRepository.GetClientsByType(clientType);
+
+                await cacheService.StoreCacheData(clients);
+            }
+
+            if (clients == null)
             {
                 throw new EPropertyCMSException();
             }
 
-            return client;
+            return clients;
         }
 
         public async Task<int> ClientsTypeTotal(ClientType? clientType)
         {
-            var clientsType = await GetClientsByType(clientType);
+            var clientsType = await _clientRepository.GetClientsByType(clientType);
 
             if (clientsType == null)
             {
@@ -82,14 +118,25 @@ namespace E_PropertyCMS.Core.Services
 
         public async Task<List<Client>> GetClientsByType(ClientType? clientType, PaginationFilter filter)
         {
-            var client = await _clientRepository.GetClientsByType(clientType, filter);
+            cacheKey += clientType.ToString();
 
-            if (client == null)
+            var cacheService = new CacheService<Client>(_memoryCache, cacheKey);
+
+            var clients = await cacheService.GetCacheData();
+
+            if (clients == null)
+            {
+                clients = await _clientRepository.GetClientsByType(clientType, filter);
+
+                await cacheService.StoreCacheData(clients);
+            }
+
+            if (clients == null)
             {
                 throw new EPropertyCMSException();
             }
 
-            return client;
+            return clients;
         }
 
         public async Task<Client> GetClientById(Guid clientId)

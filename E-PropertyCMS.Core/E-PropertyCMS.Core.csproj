@@ -17,6 +17,7 @@
     <None Remove="Helper\" />
     <None Remove="Shaper\" />
     <None Remove="Application\ConvertDtoToDomain\" />
+    <None Remove="Caching\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -28,6 +29,7 @@
     <Folder Include="Helper\" />
     <Folder Include="Shaper\" />
     <Folder Include="Application\ConvertDtoToDomain\" />
+    <Folder Include="Caching\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\E-PropertyCMS.Domain\E-PropertyCMS.Domain.csproj" />
@@ -36,5 +38,6 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.0" />
   </ItemGroup>
 </Project>

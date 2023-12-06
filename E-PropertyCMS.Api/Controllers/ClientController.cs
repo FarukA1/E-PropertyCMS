@@ -18,7 +18,7 @@ using E_PropertyCMS.Domain.Enumeration;
 
 namespace E_PropertyCMS.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route($"api/[controller]{"s"}")]
     [ApiController]
     [ValidateRequest]
     public class ClientController : ControllerBase
@@ -45,20 +45,23 @@ namespace E_PropertyCMS.Api.Controllers
 
             if (type == null)
             {
-                clients = await _clientService.GetClients(validFilter);
-                count = await _clientService.ClientsTotal();
+                clients = await _clientService.GetClients();
+                count = clients.Count();
             }
 
             if (type != null)
             {
-                clients = await _clientService.GetClientsByType(type, validFilter);
-                count = await _clientService.ClientsTypeTotal(type);
+                clients = await _clientService.GetClientsByType(type);
+                count = clients.Count();
             }
 
             if (!clients.Any())
             {
-                throw new EPropertyCMSException("No Clients");
+                return NoContent();
             }
+
+            clients = clients.Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
+                 .Take(filter.PageSize).ToList();
 
             if (fields != null)
             {
@@ -88,7 +91,7 @@ namespace E_PropertyCMS.Api.Controllers
 
             if(client == null)
             {
-                throw new EPropertyCMSException("Client does not exist");
+                return NotFound();
             }
 
             if (fields != null)
@@ -108,7 +111,7 @@ namespace E_PropertyCMS.Api.Controllers
 
             if (!properties.Any())
             {
-                throw new EPropertyCMSException($"{id} does not have any property");
+                return NotFound();
             }
 
             if (fields != null)
@@ -134,7 +137,7 @@ namespace E_PropertyCMS.Api.Controllers
 
             if (client == null)
             {
-                throw new EPropertyCMSException("Client does not exist");
+                throw new EPropertyCMSException("Client was not created");
             }
 
             if (fields != null)

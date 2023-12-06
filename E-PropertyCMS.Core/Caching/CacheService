@@ -9,17 +9,5 @@ namespace E_PropertyCMS.Core.Caching
         public class CacheService(IMemoryCache memoryCache) {
             _memoryCache = memoryCache;
         }
-
-        public async Task<List<T>> CacheData(string key, List<T> datas) {
-            if(!_memoryCache.TryGetValue(key, out datas)) {
-                datas = GetValuesFromDbAsync().Result;
-
-                _memoryCache.Set(key, datas,
-                    new MemoryCacheEntryOptions()
-                    .SetAbsoluteExpiration(TimeSpan.FromSeconds(5)));
-
-            }
-
-        }
     }
 }

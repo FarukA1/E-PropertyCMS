@@ -104,7 +104,7 @@ namespace E_PropertyCMS.Repository.Repositories
                 //    .ThenInclude(y => y.Rooms)
                 .FirstOrDefaultAsync();
 
-            return client.AddToDomain();
+            return client?.AddToDomain();
 		}
 
         public async Task<List<Property>> GetClientProperties(Guid clientId)
@@ -213,7 +213,7 @@ namespace E_PropertyCMS.Repository.Repositories
             exist.AddFromDomain(client);
             await _coreContext.SaveChangesAsync();
 
-            return exist.AddToDomain();
+            return exist?.AddToDomain();
 		}
 
         public async Task<Property> GetPropertyById(Guid Id)
@@ -229,7 +229,7 @@ namespace E_PropertyCMS.Repository.Repositories
 				return null;
 			}
 
-            return property.AddToDomain();
+            return property?.AddToDomain();
         }
 
         public async Task<Property> StoreProperty(Guid clientId, Property property)
@@ -261,7 +261,7 @@ namespace E_PropertyCMS.Repository.Repositories
 
             exist.AddFromDomain(property);
 
-            return exist.AddToDomain();
+            return exist?.AddToDomain();
         }
 
         public async Task<Address> GetClientAddress(Guid clientId, Guid addressId)
@@ -276,7 +276,7 @@ namespace E_PropertyCMS.Repository.Repositories
             var property = await _coreContext.Address
                 .FirstOrDefaultAsync(v => v.Key == addressId);
 
-            return property.AddToDomain();
+            return property?.AddToDomain();
         }
 
         public async Task<AddressDbModel> AddAddress(Address address)
@@ -312,7 +312,7 @@ namespace E_PropertyCMS.Repository.Repositories
 
             exist.AddFromDomain(address);
 
-            return exist.AddToDomain();
+            return exist?.AddToDomain();
         }
 
         public async Task<List<Room>> GetRooms(Guid propertyId)
@@ -362,7 +362,7 @@ namespace E_PropertyCMS.Repository.Repositories
 
             exist.AddFromDomain(room);
 
-            return exist.AddToDomain();
+            return exist?.AddToDomain();
         }
     }
 }

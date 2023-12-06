@@ -19,6 +19,42 @@
           }
         }
       },
+      "Microsoft.Extensions.Caching.Abstractions/6.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "6.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Caching.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Caching.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.Extensions.Caching.Memory/6.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "6.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Options": "6.0.0",
+          "Microsoft.Extensions.Primitives": "6.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Caching.Memory.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Caching.Memory.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Extensions.DependencyInjection/6.0.0": {
         "type": "package",
         "dependencies": {
@@ -225,6 +261,44 @@
         "lib/netstandard2.0/Microsoft.AspNetCore.WebUtilities.xml",
         "microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
         "microsoft.aspnetcore.webutilities.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.Caching.Abstractions/6.0.0": {
+      "sha512": "bcz5sSFJbganH0+YrfvIjJDIcKNW7TL07C4d1eTmXy/wOt52iz4LVogJb6pazs7W0+74j0YpXFErvp++Aq5Bsw==",
+      "type": "package",
+      "path": "microsoft.extensions.caching.abstractions/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.Caching.Abstractions.dll",
+        "lib/net461/Microsoft.Extensions.Caching.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Caching.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Caching.Abstractions.xml",
+        "microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",
+        "microsoft.extensions.caching.abstractions.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Caching.Memory/6.0.0": {
+      "sha512": "Ve3BlCzhAlVp5IgO3+8dacAhZk1A0GlIlFNkAcfR2TfAibLKWIt5DhVJZfu4YtW+XZ89OjYf/agMcgjDtPxdGA==",
+      "type": "package",
+      "path": "microsoft.extensions.caching.memory/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.Caching.Memory.dll",
+        "lib/net461/Microsoft.Extensions.Caching.Memory.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Caching.Memory.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Caching.Memory.xml",
+        "microsoft.extensions.caching.memory.6.0.0.nupkg.sha512",
+        "microsoft.extensions.caching.memory.nuspec",
+        "useSharedDesignerContext.txt"
       ]
     },
     "Microsoft.Extensions.DependencyInjection/6.0.0": {
@@ -517,6 +591,7 @@
     "net6.0": [
       "E-PropertyCMS.Domain >= 1.0.0",
       "Microsoft.AspNetCore.WebUtilities >= 2.2.0",
+      "Microsoft.Extensions.Caching.Memory >= 6.0.0",
       "Microsoft.Extensions.Logging >= 6.0.0",
       "Microsoft.Extensions.Logging.Abstractions >= 6.0.4"
     ]
@@ -527,11 +602,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Core/E-PropertyCMS.Core.csproj",
+      "projectUniqueName": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Core/E-PropertyCMS.Core.csproj",
       "projectName": "E-PropertyCMS.Core",
-      "projectPath": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Core/E-PropertyCMS.Core.csproj",
+      "projectPath": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Core/E-PropertyCMS.Core.csproj",
       "packagesPath": "/Users/farukawofeso/.nuget/packages/",
-      "outputPath": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Core/obj/",
+      "outputPath": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Core/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/farukawofeso/.nuget/NuGet/NuGet.Config"
@@ -547,8 +622,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj": {
-              "projectPath": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj"
+            "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj": {
+              "projectPath": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj"
             }
           }
         }
@@ -566,6 +641,10 @@
           "Microsoft.AspNetCore.WebUtilities": {
             "target": "Package",
             "version": "[2.2.0, )"
+          },
+          "Microsoft.Extensions.Caching.Memory": {
+            "target": "Package",
+            "version": "[6.0.0, )"
           },
           "Microsoft.Extensions.Logging": {
             "target": "Package",

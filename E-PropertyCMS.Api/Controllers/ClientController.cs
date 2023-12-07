@@ -15,10 +15,12 @@ using System.Dynamic;
 using E_PropertyCMS.Core.Application.Dto;
 using Microsoft.AspNetCore.Routing;
 using E_PropertyCMS.Domain.Enumeration;
+using Microsoft.AspNetCore.Authorization;
 
 namespace E_PropertyCMS.Api.Controllers
 {
-    [Route($"api/[controller]{"s"}")]
+    [Route($"api/Clients")]
+    [Authorize]
     [ApiController]
     [ValidateRequest]
     public class ClientController : ControllerBase
@@ -43,21 +45,19 @@ namespace E_PropertyCMS.Api.Controllers
 
             int count = 0;
 
-            if (type == null)
-            {
-                clients = await _clientService.GetClients();
-                count = clients.Count();
-            }
-
-            if (type != null)
-            {
-                clients = await _clientService.GetClientsByType(type);
-                count = clients.Count();
-            }
+            clients = await _clientService.GetClients();
 
             if (!clients.Any())
             {
                 return NoContent();
+            }
+
+            count = clients.Count();
+
+            if (type != null)
+            {
+                clients = clients.Where(v => v.ClientType == type).ToList();
+                count = clients.Count();
             }
 
             clients = clients.Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
@@ -104,30 +104,60 @@ namespace E_PropertyCMS.Api.Controllers
             return Ok(new Response<Client>(client));
         }
 
+
         [HttpGet("{id}/properties")]
-        public async Task<IActionResult> GetClientProperties(Guid id, string? fields)
+        public async Task<IActionResult> GetClientProperties(Guid id, [FromQuery] PaginationFilter filter, string? fields, PropertyType? type, PropertyStatus? status)
         {
-            var properties = await _clientService.GetClientProperties(id);
+            var route = Request.Path.Value;
+
+            var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+
+            var properties = new List<Property>();
+
+            int count = 0;
+
+            properties = await _clientService.GetClientProperties(id);
 
             if (!properties.Any())
             {
                 return NotFound();
             }
 
+            count = properties.Count();
+
+            if (type != null)
+            {
+                properties = properties.Where(v => v.PropertyType == type).ToList();
+                count = properties.Count();
+            }
+
+            if (status != null)
+            {
+                properties = properties.Where(v => v.PropertyStatus == status).ToList();
+                count = properties.Count();
+            }
+
+            properties = properties.Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
+                .Take(filter.PageSize).ToList();
+
             if (fields != null)
             {
-                var clientsShaped = new List<object>();
+                var propertysShaped = new List<object>();
 
                 foreach (var property in properties)
                 {
-                    var clientShaped = DataShaper<Property>.GetShapedObject(property, fields);
-                    clientsShaped.Add(clientShaped);
+                    var propertyShaped = DataShaper<Property>.GetShapedObject(property, fields);
+                    propertysShaped.Add(propertyShaped);
                 }
 
-                return Ok(clientsShaped);
+                var responseShaped = PaginationHelper.CreatePagedResponse(propertysShaped, validFilter, count, _uriService, route);
+
+                return Ok(responseShaped);
             }
 
-            return Ok(new Response<List<Property>>(properties));
+            var response = PaginationHelper.CreatePagedResponse(properties, validFilter, count, _uriService, route);
+
+            return Ok(response);
         }
 
         [HttpPost("create")]

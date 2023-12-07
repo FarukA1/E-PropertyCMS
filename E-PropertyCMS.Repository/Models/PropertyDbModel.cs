@@ -43,6 +43,11 @@ namespace E_PropertyCMS.Repository.Models
                 }
             }
 
+            if(Client != null)
+            {
+                property.ClientId = Client.Key;
+            }
+
             return property;
         }
 

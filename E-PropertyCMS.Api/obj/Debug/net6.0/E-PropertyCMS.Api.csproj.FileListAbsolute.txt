@@ -71,6 +71,7 @@
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Humanizer.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/System.Net.Http.Formatting.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/System.Web.Http.dll
+/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Design.dll
@@ -85,6 +86,11 @@
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.Extensions.Logging.Abstractions.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.Extensions.Options.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.Extensions.Primitives.dll
+/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.IdentityModel.Logging.dll
+/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.IdentityModel.Protocols.dll
+/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.IdentityModel.Tokens.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.OpenApi.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.Owin.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.Owin.Security.dll
@@ -97,6 +103,7 @@
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Swashbuckle.AspNetCore.Swagger.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/System.IdentityModel.Tokens.Jwt.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/E-PropertyCMS.Core.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/E-PropertyCMS.Domain.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/E-PropertyCMS.Repository.dll

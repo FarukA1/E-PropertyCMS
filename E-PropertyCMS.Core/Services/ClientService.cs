@@ -17,7 +17,7 @@ namespace E_PropertyCMS.Core.Services
         private readonly IDtoToDomain _dtoToDomain;
         private readonly IClientRepository _clientRepository;
 
-        private string cacheKey = "clients";
+        private string clientCacheKey = "clients";
 
         public ClientService(IMemoryCache memoryCache, IDtoToDomain dtoToDomain, IClientRepository clientRepository)
 		{
@@ -29,104 +29,13 @@ namespace E_PropertyCMS.Core.Services
         public async Task<List<Client>> GetClients()
         {
             
-            var cacheService = new CacheService<Client>(_memoryCache, cacheKey);
+            var cacheService = new CacheService<Client>(_memoryCache, clientCacheKey);
 
             var clients = await cacheService.GetCacheData();
 
             if(clients == null)
             {
                 clients = await _clientRepository.GetClients();
-
-                await cacheService.StoreCacheData(clients);
-            }
-
-            if (clients == null)
-            {
-                throw new EPropertyCMSException();
-            }
-
-            return clients;
-        }
-
-        public async Task<int> ClientsTotal()
-        {
-            var clients = await _clientRepository.GetClients();
-
-            if (clients == null)
-            {
-                return 0;
-            }
-
-            return clients.Count();
-        }
-
-        public async Task<List<Client>> GetClients(PaginationFilter filter)
-        {
-            var cacheService = new CacheService<Client>(_memoryCache, cacheKey);
-
-            var clients = await cacheService.GetCacheData();
-
-            if (clients == null)
-            {
-                clients = await _clientRepository.GetClients(filter);
-
-                await cacheService.StoreCacheData(clients);
-            }
-
-            if (clients == null)
-            {
-                throw new EPropertyCMSException();
-            }
-
-            return clients;
-        }
-
-        public async Task<List<Client>> GetClientsByType(ClientType? clientType)
-        {
-            cacheKey += clientType.ToString();
-
-            var cacheService = new CacheService<Client>(_memoryCache, cacheKey);
-
-            var clients = await cacheService.GetCacheData();
-
-            if (clients == null)
-            {
-                clients = await _clientRepository.GetClientsByType(clientType);
-
-                await cacheService.StoreCacheData(clients);
-            }
-
-            if (clients == null)
-            {
-                throw new EPropertyCMSException();
-            }
-
-            return clients;
-        }
-
-        public async Task<int> ClientsTypeTotal(ClientType? clientType)
-        {
-            var clientsType = await _clientRepository.GetClientsByType(clientType);
-
-            if (clientsType == null)
-            {
-                return 0;
-            }
-
-            return clientsType.Count();
-        }
-
-        public async Task<List<Client>> GetClientsByType(ClientType? clientType, PaginationFilter filter)
-        {
-            cacheKey += clientType.ToString();
-
-            var cacheService = new CacheService<Client>(_memoryCache, cacheKey);
-
-            var clients = await cacheService.GetCacheData();
-
-            if (clients == null)
-            {
-                clients = await _clientRepository.GetClientsByType(clientType, filter);
 
                 await cacheService.StoreCacheData(clients);
             }
@@ -148,6 +57,13 @@ namespace E_PropertyCMS.Core.Services
 
         public async Task<List<Property>> GetClientProperties(Guid clientId)
         {
+            var client = await GetClientById(clientId);
+
+            if(client == null)
+            {
+                throw new EPropertyCMSException($"Client {clientId} does exist");
+            }
+
             var properties = await _clientRepository.GetClientProperties(clientId);
 
             if (!properties.Any())

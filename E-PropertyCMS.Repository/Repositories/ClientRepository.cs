@@ -38,61 +38,6 @@ namespace E_PropertyCMS.Repository.Repositories
             return clients;
         }
 
-        public async Task<List<Client>> GetClients(PaginationFilter filter)
-        {
-            var clients = new List<Client>();
-
-            var clientsDbModel = await _coreContext.Client
-                 .Include(v => v.Address)
-                 .Skip((filter.PageNumber - 1) * filter.PageSize)
-                 .Take(filter.PageSize)
-                .ToListAsync();
-
-            foreach (var clientDbModel in clientsDbModel)
-            {
-                clients.Add(clientDbModel.AddToDomain());
-            }
-
-            return clients;
-        }
-
-        public async Task<List<Client>> GetClientsByType(ClientType? clientType)
-        {
-            var clients = new List<Client>();
-
-            var clientsDbModel = await _coreContext.Client
-                 .Include(v => v.Address)
-
-                .Where(v => v.ClientType == clientType)
-                .ToListAsync();
-
-            foreach (var clientDbModel in clientsDbModel)
-            {
-                clients.Add(clientDbModel.AddToDomain());
-            }
-
-            return clients;
-        }
-
-        public async Task<List<Client>> GetClientsByType(ClientType? clientType, PaginationFilter filter)
-        {
-            var clients = new List<Client>();
-
-            var clientsDbModel = await _coreContext.Client
-                 .Include(v => v.Address)
-                 .Skip((filter.PageNumber - 1) * filter.PageSize)
-                 .Take(filter.PageSize)
-                .Where(v => v.ClientType == clientType)
-                .ToListAsync();
-
-            foreach (var clientDbModel in clientsDbModel)
-            {
-                clients.Add(clientDbModel.AddToDomain());
-            }
-
-            return clients;
-        }
-
         public async Task<Client> GetClientById(Guid Id)
 		{
 			var client = await _coreContext.Client
@@ -111,15 +56,9 @@ namespace E_PropertyCMS.Repository.Repositories
         {
             var propertyList = new List<Property>();
 
-            var client = await _coreContext.Client.Where(v => v.Key == clientId).FirstOrDefaultAsync();
-
-            if(client == null)
-            {
-                throw new EPropertyCMSException("This client does not exist");
-            }
-
             var properties = await _coreContext.Property
-                .Where(v => v.clientId == client.Id)
+                .Include(v => v.Client)
+                .Where(v => v.Client.Key == clientId)
                 .Include(v => v.Address)
                 .Include(v => v.Rooms)
                 .ToListAsync();

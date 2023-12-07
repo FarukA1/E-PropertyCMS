@@ -6,6 +6,7 @@ namespace E_PropertyCMS.Domain.Model
 	public class Property
 	{
         public Guid Id { get; set; }
+        public Guid ClientId { get; set; }
         public Address Address { get; set; }
         public string Price { get; set; }
         public PropertyType PropertyType { get; set; } 

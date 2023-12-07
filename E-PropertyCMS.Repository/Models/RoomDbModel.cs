@@ -22,6 +22,11 @@ namespace E_PropertyCMS.Repository.Models
                 Description = Description
             };
 
+            if(Property != null)
+            {
+                room.PropertyId = Property.Key;
+            }
+
             return room;
         }
 

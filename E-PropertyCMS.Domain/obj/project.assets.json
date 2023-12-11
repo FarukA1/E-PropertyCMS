@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj",
+      "projectUniqueName": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj",
       "projectName": "E-PropertyCMS.Domain",
-      "projectPath": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj",
+      "projectPath": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Domain/E-PropertyCMS.Domain.csproj",
       "packagesPath": "/Users/farukawofeso/.nuget/packages/",
-      "outputPath": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Domain/obj/",
+      "outputPath": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Domain/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/farukawofeso/.nuget/NuGet/NuGet.Config"

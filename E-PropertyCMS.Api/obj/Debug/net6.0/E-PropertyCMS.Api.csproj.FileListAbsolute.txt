@@ -68,10 +68,14 @@
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/E-PropertyCMS.Api.runtimeconfig.json
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/E-PropertyCMS.Api.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/E-PropertyCMS.Api.pdb
+/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Auth0.AspNetCore.Authentication.dll
+/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Auth0.Core.dll
+/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Auth0.ManagementApi.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Humanizer.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/System.Net.Http.Formatting.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/System.Web.Http.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Design.dll
@@ -86,6 +90,7 @@
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.Extensions.Logging.Abstractions.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.Extensions.Options.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.Extensions.Primitives.dll
+/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.IdentityModel.Abstractions.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.IdentityModel.JsonWebTokens.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.IdentityModel.Logging.dll
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Microsoft.IdentityModel.Protocols.dll
@@ -131,3 +136,7 @@
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/obj/Debug/net6.0/E-PropertyCMS.Api.pdb
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/obj/Debug/net6.0/E-PropertyCMS.Api.genruntimeconfig.cache
 /Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/obj/Debug/net6.0/ref/E-PropertyCMS.Api.dll
+/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Auth0.AuthenticationApi.dll
+/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/Auth0Net.DependencyInjection.dll
+/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/LazyCache.dll
+/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Api/bin/Debug/net6.0/LazyCache.AspNetCore.dll

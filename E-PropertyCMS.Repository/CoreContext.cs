@@ -21,6 +21,7 @@ public class CoreContext : DbContext, ICoreContext
     public DbSet<CaseDbModel> Case { get; set; }
     public DbSet<CaseTypeDbModel> CaseType { get; set; }
     public DbSet<CaseStatusDbModel> CaseStatus { get; set; }
+    public DbSet<UserDbModel> User { get; set; }
 
     public CoreContext(DbContextOptions<CoreContext> options)
         : base(options)
@@ -94,6 +95,18 @@ public class CoreContext : DbContext, ICoreContext
         modelBuilder.Entity<CaseStatusDbModel>().HasKey(t => t.Id);
         modelBuilder.Entity<CaseStatusDbModel>().ToTable("CaseStatus");
         modelBuilder.Entity<CaseStatusDbModel>().Property(t => t.Status).HasMaxLength(100);
+
+        modelBuilder.Entity<UserDbModel>().HasKey(t => t.Id);
+        modelBuilder.Entity<UserDbModel>().ToTable("User");
+        modelBuilder.Entity<UserDbModel>().Property(t => t.UniqueId).HasMaxLength(500);
+        modelBuilder.Entity<UserDbModel>().Property(t => t.Title).HasMaxLength(500);
+        modelBuilder.Entity<UserDbModel>().Property(t => t.FirstName).HasMaxLength(500);
+        modelBuilder.Entity<UserDbModel>().Property(t => t.LastName).HasMaxLength(500);
+        modelBuilder.Entity<UserDbModel>().Property(t => t.UserName).HasMaxLength(500);
+        modelBuilder.Entity<UserDbModel>().Property(t => t.Email).HasMaxLength(50);
+        modelBuilder.Entity<UserDbModel>().Property(t => t.Phone).HasMaxLength(20);
+        modelBuilder.Entity<UserDbModel>().Property(t => t.Picture).HasMaxLength(1000);
+        modelBuilder.Entity<UserDbModel>().Property(t => t.IsBlocked).HasDefaultValue(false);
 
         base.OnModelCreating(modelBuilder);
     }

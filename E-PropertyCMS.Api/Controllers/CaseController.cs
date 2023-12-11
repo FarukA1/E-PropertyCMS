@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace E_PropertyCMS.Api.Controllers
 {
     [ValidateRequest]
+    [Authorize]
     public class CaseController : ApiController
     {
         //private readonly ICaseService _caseService;

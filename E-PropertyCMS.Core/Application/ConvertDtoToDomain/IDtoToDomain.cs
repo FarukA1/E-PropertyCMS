@@ -10,6 +10,7 @@ namespace E_PropertyCMS.Core.Application.ConvertDtoToDomain
         Task<Property> GetProperty(PropertyDto dto);
         Task<Address> GetAddress(AddressDto dto);
         Task<Room> GetRoom(RoomDto dto);
+        Task<User> GetUser(UserDto dto);
     }
 }
 

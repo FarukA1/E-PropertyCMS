@@ -1,5 +1,6 @@
 ﻿using System;
 using E_PropertyCMS.Core.Application.Dto;
+using E_PropertyCMS.Core.CustomException;
 using E_PropertyCMS.Domain.Model;
 
 namespace E_PropertyCMS.Core.Application.ConvertDtoToDomain
@@ -133,6 +134,55 @@ namespace E_PropertyCMS.Core.Application.ConvertDtoToDomain
             }
 
             return room;
+        }
+
+        public async Task<User> GetUser(UserDto dto)
+        {
+            var user = new User()
+            {
+                Id = Guid.NewGuid()
+            };
+
+            if(dto.UniqueId == null)
+            {
+                throw new EPropertyCMSException("A unique Id is needed to create a user. Check with you admin."); 
+            }
+
+            user.UniqueId = dto.UniqueId;
+
+            if (dto.Title != null)
+            {
+                user.Title = dto.Title;
+            }
+
+            if (dto.FirstName != null)
+            {
+                user.FirstName = dto.FirstName;
+            }
+
+            if (dto.LastName != null)
+            {
+                user.LastName = dto.LastName;
+            }
+
+            if (dto.UserName != null)
+            {
+                user.UserName = dto.UserName;
+            }
+
+            if (dto.Phone != null)
+            {
+                user.Phone = dto.Phone;
+            }
+
+            if (dto.Email != null)
+            {
+                user.Email = dto.Email;
+            }
+
+            user.Picture = dto.Picture;
+
+            return user;
         }
     }
 }

@@ -14,6 +14,7 @@ namespace E_PropertyCMS.Repository.Contexts
         DbSet<CaseDbModel> Case { get; set; }
         DbSet<CaseTypeDbModel> CaseType { get; set; }
         DbSet<CaseStatusDbModel> CaseStatus { get; set; }
+        DbSet<UserDbModel> User { get; set; }
 
 
         Task<int> SaveChangesAsync();

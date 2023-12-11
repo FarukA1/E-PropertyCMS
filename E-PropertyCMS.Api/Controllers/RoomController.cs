@@ -10,6 +10,7 @@ using E_PropertyCMS.Core.Wrappers;
 using E_PropertyCMS.Domain.Enumeration;
 using E_PropertyCMS.Domain.Filter;
 using E_PropertyCMS.Domain.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -17,6 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace E_PropertyCMS.Api.Controllers
 {
     [Route($"api/Rooms")]
+    [Authorize]
     [ApiController]
     [ValidateRequest]
     public class RoomController : ControllerBase

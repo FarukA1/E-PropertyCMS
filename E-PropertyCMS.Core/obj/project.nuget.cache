@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/jdFWjD8NnL7R+8RVZNSqOhkezlULC1/fhltVIawaqYVKvc+slsJYH2USnj+TE914C3c4WwN4YzHlsVjcqx61Q==",
+  "dgSpecHash": "Ypja/H8Rws3eJGfm2uanWbQpvT3vLhvm4hRbAKennGtTWTn1nwvyc5afHpagXop5hbGjLCWXy0DcAYWZyBKaLQ==",
   "success": true,
-  "projectFilePath": "/Users/farukawofeso/Desktop/Development_V1/E-Property CMS/E-PropertyCMS/E-PropertyCMS.Core/E-PropertyCMS.Core.csproj",
+  "projectFilePath": "/Users/farukawofeso/Desktop/Programming/VS Code/E-PropertyCMS.Web/E-PropertyCMS/E-PropertyCMS.Core/E-PropertyCMS.Core.csproj",
   "expectedPackageFiles": [
     "/Users/farukawofeso/.nuget/packages/microsoft.aspnetcore.webutilities/2.2.0/microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
     "/Users/farukawofeso/.nuget/packages/microsoft.extensions.caching.abstractions/6.0.0/microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",

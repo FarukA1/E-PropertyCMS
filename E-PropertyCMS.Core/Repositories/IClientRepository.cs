@@ -9,6 +9,7 @@ namespace E_PropertyCMS.Core.Repositories
 	public interface IClientRepository
 	{
         Task<List<Client>> GetClients();
+        Task<List<Client>> Search(string searchQuery);
         Task<Client> GetClientById(Guid Id);
         Task<List<Property>> GetClientProperties(Guid clientId);
         Task<Client> StoreClient(Client client);

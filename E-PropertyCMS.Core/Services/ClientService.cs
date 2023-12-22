@@ -48,6 +48,19 @@ namespace E_PropertyCMS.Core.Services
             return clients;
         }
 
+        public async Task<List<Client>> Search(string searchQuery)
+        {
+
+            var clients = await _clientRepository.Search(searchQuery);
+
+            if (clients == null)
+            {
+                throw new EPropertyCMSException();
+            }
+
+            return clients;
+        }
+
         public async Task<Client> GetClientById(Guid clientId)
 		{
 			var client = await _clientRepository.GetClientById(clientId);

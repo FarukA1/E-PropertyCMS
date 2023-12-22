@@ -38,6 +38,26 @@ namespace E_PropertyCMS.Repository.Repositories
             return clients;
         }
 
+        public async Task<List<Client>> Search(string searchQuery)
+        {
+            var clients = new List<Client>();
+
+            searchQuery = searchQuery.ToLower();
+
+            var clientsDbModel = await _coreContext.Client
+                 .Include(v => v.Address)
+                 .Where(v => (searchQuery.Length == 1 && (v.FirstName.ToLower().StartsWith(searchQuery) || v.LastName.ToLower().StartsWith(searchQuery))) ||
+                    (searchQuery.Length > 1 && (v.FirstName.ToLower().Equals(searchQuery) || v.LastName.ToLower().Equals(searchQuery))))
+                .ToListAsync();
+
+            foreach (var clientDbModel in clientsDbModel)
+            {
+                clients.Add(clientDbModel.AddToDomain());
+            }
+
+            return clients;
+        }
+
         public async Task<Client> GetClientById(Guid Id)
 		{
 			var client = await _coreContext.Client

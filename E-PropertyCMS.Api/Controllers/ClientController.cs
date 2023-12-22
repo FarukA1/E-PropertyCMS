@@ -35,17 +35,91 @@ namespace E_PropertyCMS.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetClients([FromQuery] PaginationFilter filter, string? fields, ClientType? type)
+        public async Task<IActionResult> GetClients([FromQuery] PaginationFilter filter, string? fields, ClientType? type, string? searchQuery)
         {
-            var route = Request.Path.Value;
+            var route = Url.Action(null, null, new
+            {
+                fields,
+                type,
+                searchQuery
+            });
 
-            var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+            var validFilter = new PaginationFilter
+            {
+                PageNumber = filter.PageNumber,
+                PageSize = filter.PageSize
+            };
 
             var clients = new List<Client>();
 
             int count = 0;
 
-            clients = await _clientService.GetClients();
+            if(searchQuery == null) 
+            {
+                clients = await _clientService.GetClients();
+            }
+            else 
+            {
+                clients = await _clientService.Search(searchQuery);
+            }
+
+            if (!clients.Any())
+            {
+                return Ok();
+            }
+
+            count = clients.Count();
+
+            if (type != null)
+            {
+                clients = clients.Where(v => v.ClientType == type).ToList();
+                count = clients.Count();
+            }
+
+            clients = clients.Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
+                 .Take(filter.PageSize).ToList();
+
+            if (fields != null)
+            {
+                var clientsShaped = new List<object>();
+
+                foreach (var client in clients)
+                {
+                    var clientShaped = DataShaper<Client>.GetShapedObject(client, fields);
+                    clientsShaped.Add(clientShaped);
+                }
+
+                var responseShaped = PaginationHelper.CreatePagedResponse(clientsShaped, validFilter, count, _uriService, route);
+
+                return Ok(responseShaped);
+            }
+
+
+            var response = PaginationHelper.CreatePagedResponse(clients, validFilter, count, _uriService, route); 
+
+            return Ok(response);
+        }
+
+        [HttpPost("search")]
+        public async Task<IActionResult> Search([FromQuery] PaginationFilter filter, string? fields, ClientType? type, SearchDto search)
+        {
+            var route = Url.Action(null, null, new
+            {
+                fields,
+                type
+            });
+
+            var validFilter = new PaginationFilter
+            {
+                PageNumber = filter.PageNumber,
+                PageSize = filter.PageSize
+            };
+
+            var clients = new List<Client>();
+
+            int count = 0;
+
+            clients = await _clientService.Search(search.SearchQuery);
 
             if (!clients.Any())
             {
@@ -108,9 +182,18 @@ namespace E_PropertyCMS.Api.Controllers
         [HttpGet("{id}/properties")]
         public async Task<IActionResult> GetClientProperties(Guid id, [FromQuery] PaginationFilter filter, string? fields, PropertyType? type, PropertyStatus? status)
         {
-            var route = Request.Path.Value;
+            var route = Url.Action(null, null, new
+            {
+                fields,
+                type,
+                status
+            });
 
-            var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+            var validFilter = new PaginationFilter
+            {
+                PageNumber = filter.PageNumber,
+                PageSize = filter.PageSize
+            };
 
             var properties = new List<Property>();
 

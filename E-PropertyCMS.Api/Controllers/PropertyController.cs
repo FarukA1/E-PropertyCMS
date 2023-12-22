@@ -37,9 +37,18 @@ namespace E_PropertyCMS.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProperties([FromQuery] PaginationFilter filter, string? fields, PropertyType? type, PropertyStatus? status)
         {
-            var route = Request.Path.Value;
+            var route = Url.Action(null, null, new
+            {
+                fields,
+                type,
+                status
+            });
 
-            var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+            var validFilter = new PaginationFilter
+            {
+                PageNumber = filter.PageNumber,
+                PageSize = filter.PageSize
+            };
 
             var properties = new List<Property>();
 
@@ -113,9 +122,16 @@ namespace E_PropertyCMS.Api.Controllers
         [HttpGet("{id}/rooms")]
         public async Task<IActionResult> GetPropertyRooms(Guid id, [FromQuery] PaginationFilter filter, string? fields)
         {
-            var route = Request.Path.Value;
+            var route = Url.Action(null, null, new
+            {
+                fields
+            });
 
-            var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+            var validFilter = new PaginationFilter
+            {
+                PageNumber = filter.PageNumber,
+                PageSize = filter.PageSize
+            };
 
             var rooms = new List<Room>();
 

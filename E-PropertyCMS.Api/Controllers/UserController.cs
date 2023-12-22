@@ -38,9 +38,16 @@ namespace E_PropertyCMS.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUsers([FromQuery] PaginationFilter filter, string? fields)
         {
-            var route = Request.Path.Value;
+            var route = Url.Action(null, null, new
+            {
+                fields
+            });
 
-            var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+            var validFilter = new PaginationFilter
+            {
+                PageNumber = filter.PageNumber,
+                PageSize = filter.PageSize
+            };
 
             var users = new List<User>();
 

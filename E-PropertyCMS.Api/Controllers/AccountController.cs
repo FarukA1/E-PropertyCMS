@@ -32,33 +32,33 @@ namespace E_PropertyCMS.Api.Controllers
             _userService = userService;
         }
 
-        [HttpGet("login")]
-        public async Task Login(string returnUrl = "/")
-        {
-            var authenticationProperties = new LoginAuthenticationPropertiesBuilder()
-                // Indicate here where Auth0 should redirect the user after a login.
-                // Note that the resulting absolute Uri must be added to the
-                // **Allowed Callback URLs** settings for the app.
-                .WithRedirectUri(returnUrl)
-                .Build();
+        // [HttpGet("login")]
+        // public async Task Login(string returnUrl = "/")
+        // {
+        //     var authenticationProperties = new LoginAuthenticationPropertiesBuilder()
+        //         // Indicate here where Auth0 should redirect the user after a login.
+        //         // Note that the resulting absolute Uri must be added to the
+        //         // **Allowed Callback URLs** settings for the app.
+        //         .WithRedirectUri(returnUrl)
+        //         .Build();
 
-            await HttpContext.ChallengeAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
-        }
+        //     await HttpContext.ChallengeAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
+        // }
 
-        //[Authorize]
-        [HttpGet("logout")]
-        public async Task Logout()
-        {
-            var authenticationProperties = new LogoutAuthenticationPropertiesBuilder()
-                // Indicate here where Auth0 should redirect the user after a logout.
-                // Note that the resulting absolute Uri must be added to the
-                // **Allowed Logout URLs** settings for the app.
-                .WithRedirectUri("https://localhost:44483")
-                .Build();
+        ///[Authorize]
+        // [HttpGet("logout")]
+        // public async Task Logout()
+        // {
+        //     var authenticationProperties = new LogoutAuthenticationPropertiesBuilder()
+        //         // Indicate here where Auth0 should redirect the user after a logout.
+        //         // Note that the resulting absolute Uri must be added to the
+        //         // **Allowed Logout URLs** settings for the app.
+        //         .WithRedirectUri("https://localhost:44483")
+        //         .Build();
 
-            await HttpContext.SignOutAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        }
+        //     await HttpContext.SignOutAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
+        //     await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        // }
 
         [Authorize]
         [HttpGet("profile")]

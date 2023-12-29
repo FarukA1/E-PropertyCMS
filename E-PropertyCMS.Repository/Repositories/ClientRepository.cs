@@ -63,10 +63,10 @@ namespace E_PropertyCMS.Repository.Repositories
 			var client = await _coreContext.Client
                 .Where(v => v.Key == Id)
                 .Include(v => v.Address)
-                //.Include(v => v.Properties)
-                //    .ThenInclude(x => x.Address)
-                //.Include(v => v.Properties)
-                //    .ThenInclude(y => y.Rooms)
+                .Include(v => v.Properties)
+                   .ThenInclude(x => x.Address)
+                .Include(v => v.Properties)
+                   .ThenInclude(y => y.Rooms)
                 .FirstOrDefaultAsync();
 
             return client?.AddToDomain();

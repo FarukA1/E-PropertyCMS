@@ -40,7 +40,7 @@ const Sidebar = () => {
                 className="menu-link"
                 to="/clients"
               >
-                <i className="icon fas fa-shopping-bag"></i>
+                <i className="icon fas fa-user"></i>
                 <span className="text">Clients</span>
               </NavLink>
             </li>
@@ -50,7 +50,7 @@ const Sidebar = () => {
                 className="menu-link"
                 to="/addproduct"
               >
-                <i className="icon fas fa-cart-plus"></i>
+                <i className="icon fas fa-building"></i>
                 <span className="text">Properties</span>
               </NavLink>
             </li>
@@ -60,7 +60,7 @@ const Sidebar = () => {
                 className="menu-link"
                 to="/category"
               >
-                <i className="icon fas fa-list"></i>
+                <i className="icon fas fa-briefcase"></i>
                 <span className="text">Cases</span>
               </NavLink>
             </li>
@@ -101,7 +101,7 @@ const Sidebar = () => {
                 className="menu-link disabled"
                 to="/transaction"
               >
-                <i className="icon fas fa-usd-circle"></i>
+                <i className="icon fas fa-cogs"></i>
                 <span className="text">Configurations</span>
               </NavLink>
             </li>

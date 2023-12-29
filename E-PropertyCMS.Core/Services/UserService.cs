@@ -53,6 +53,13 @@ namespace E_PropertyCMS.Core.Services
             return user;
         }
 
+        public async Task<User> GetUserByAuthId(string UniqueId)
+        {
+            var user = await _userRepository.GetUserByAuthId(UniqueId);
+
+            return user;
+        }
+
         public async Task<User> StoreUser(UserDto dto)
         {
             var user = await _dtoToDomain.GetUser(dto);

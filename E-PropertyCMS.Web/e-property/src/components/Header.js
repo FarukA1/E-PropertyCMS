@@ -1,12 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState }  from "react";
 import { Link } from "react-router-dom";
 import $ from "jquery";
 // import { useDispatch } from "react-redux";
 // import { logout } from "../Redux/Actions/userActions";
 import Logout from "./Logout";
+import { UserService } from "./app-services/user-service";
 
 const Header = () => {
 //   const dispatch = useDispatch();
+const [fields, setFields] = useState("picture,username"); 
+const [userDetails, setUserDetails] = useState([]);
+
   useEffect(() => {
     $("[data-trigger]").on("click", function (e) {
       e.preventDefault();
@@ -24,6 +28,23 @@ const Header = () => {
         $("body").toggleClass("aside-mini");
       }
     });
+
+    const fetchUser = async () => {
+      try {
+        const queryParams = {
+          fields: fields
+          // Add any query parameters you need here
+        };
+
+        const response = await UserService.getCurrentUser(queryParams);
+        // setAllData(response);
+        setUserDetails(response.data);
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
+    };
+
+    fetchUser();
   }, []);
 
 //     const logoutHandler = () => {
@@ -33,7 +54,7 @@ const Header = () => {
   return (
     <header className="main-header navbar">
       <div className="col-search">
-        <form className="searchform">
+        {/* <form className="searchform">
           <div className="input-group">
             <input
               list="search_terms"
@@ -51,17 +72,17 @@ const Header = () => {
             <option value="Apple iphone" />
             <option value="Ahmed Hassan" />
           </datalist>
-        </form>
+        </form> */}
       </div>
       <div className="col-nav">
-        <button
+        {/* <button
           className="btn btn-icon btn-mobile me-auto"
           data-trigger="#offcanvas_aside"
         >
           <i className="md-28 fas fa-bars"></i>
-        </button>
+        </button> */}
         <ul className="nav">
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link className={`nav-link btn-icon `} title="Dark mode" to="#">
               <i className="fas fa-moon"></i>
             </Link>
@@ -75,22 +96,25 @@ const Header = () => {
             <Link className="nav-link" to="#">
               English
             </Link>
-          </li>
+          </li> */}
           <li className="dropdown nav-item">
             <Link className="dropdown-toggle" data-bs-toggle="dropdown" to="#">
-              <img
-                className="img-xs rounded-circle"
-                src="/images/IMG_4839.jpg"
-                alt="User"
-              />
+              <span>
+                Hi {userDetails.username}
+                <img
+                  className="img-xs rounded-circle"
+                  src={userDetails.picture}
+                  alt={userDetails.username}
+                />
+            </span>
             </Link>
             <div className="dropdown-menu dropdown-menu-end">
-              <Link className="dropdown-item" to="/">
+              <Link className="dropdown-item" to="/myprofile">
                 My profile
               </Link>
-              <Link className="dropdown-item" to="#">
+              {/* <Link className="dropdown-item" to="#">
                 Settings
-              </Link>
+              </Link> */}
               <Link
                 onClick={Logout}
                 className="dropdown-item text-danger"

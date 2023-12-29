@@ -39,6 +39,14 @@ namespace E_PropertyCMS.Repository.Repositories
             return user?.AddToDomain();
         }
 
+        public async Task<User> GetUserByAuthId(string UniqueId)
+        {
+            var user = await _coreContext.User
+                .FirstOrDefaultAsync(v => v.UniqueId == UniqueId);
+
+            return user?.AddToDomain();
+        }
+
         public async Task<User> StoreUser(User user)
         {
             var newUser = new UserDbModel()

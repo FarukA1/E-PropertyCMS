@@ -8,6 +8,7 @@ namespace E_PropertyCMS.Core.Services
 	{
         Task<List<User>> GetUsers();
         Task<User> GetUserById(Guid userId);
+        Task<User> GetUserByAuthId(string UniqueId);
         Task<User> StoreUser(UserDto dto);
     }
 }

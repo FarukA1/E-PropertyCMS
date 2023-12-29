@@ -7,6 +7,7 @@ namespace E_PropertyCMS.Core.Repositories
 	{
         Task<List<User>> GetUsers();
         Task<User> GetUserById(Guid Id);
+        Task<User> GetUserByAuthId(string UniqueId);
         Task<User> StoreUser(User user);
     }
 }

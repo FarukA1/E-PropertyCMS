@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace E_PropertyCMS.Api.Controllers
 {
-    [Route($"api/User")]
+    [Route($"api/Users")]
     [Authorize]
     [ApiController]
     [ValidateRequest]
@@ -104,6 +104,28 @@ namespace E_PropertyCMS.Api.Controllers
             }
 
             return Ok(new Response<User>(user));
+        }
+
+        [HttpGet("currentUser")]
+        public async Task<IActionResult> GetCurrentUser(string? fields)
+        {
+            var uniqueIdentity = User.Identity.Name;
+
+            var currentUser = await _userService.GetUserByAuthId(uniqueIdentity);
+
+            if (currentUser == null)
+            {
+                return NotFound();
+            }
+
+            if (fields != null)
+            {
+                var userShaped = DataShaper<User>.GetShapedObject(currentUser, fields);
+
+                return Ok(new Response<object>(userShaped));
+            }
+
+            return Ok(new Response<User>(currentUser));
         }
 
         [HttpGet("{id}/Auth0/{uniqueId}")]

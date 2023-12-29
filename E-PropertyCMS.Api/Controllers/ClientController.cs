@@ -66,6 +66,7 @@ namespace E_PropertyCMS.Api.Controllers
             if (!clients.Any())
             {
                 return Ok();
+                // return Ok(new Response<Client>(clients));
             }
 
             count = clients.Count();

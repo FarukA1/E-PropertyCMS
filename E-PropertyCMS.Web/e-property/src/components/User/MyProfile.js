@@ -11,7 +11,6 @@ const MyProlife = () => {
             };
     
             const response = await UserService.getCurrentUser(queryParams);
-            // setAllData(response);
             setUserDetails(response.data);
             } catch (error) {
             console.error('Error fetching user:', error);

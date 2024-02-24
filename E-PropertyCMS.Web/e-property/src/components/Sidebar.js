@@ -48,7 +48,7 @@ const Sidebar = () => {
               <NavLink
                 activeClassName="active"
                 className="menu-link"
-                to="/addproduct"
+                to="/properties"
               >
                 <i className="icon fas fa-building"></i>
                 <span className="text">Properties</span>
@@ -58,7 +58,7 @@ const Sidebar = () => {
               <NavLink
                 activeClassName="active"
                 className="menu-link"
-                to="/category"
+                to="/cases"
               >
                 <i className="icon fas fa-briefcase"></i>
                 <span className="text">Cases</span>

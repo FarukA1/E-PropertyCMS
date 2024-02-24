@@ -1,31 +1,40 @@
 import React, { useEffect, useState }  from "react";
+import { useNavigate } from "react-router-dom";
 import { Link, useParams } from "react-router-dom";
 import Moment from 'react-moment';
 import { clientService } from "../app-services/client-service";
 
 const ClientById = (props) => {
+    const navigate = useNavigate();
     const { id } = useParams();
 
     debugger;
     const [clientDetails, setClientDetails] = useState([]);
+    const [clientCases, setClientCases] = useState([]);
 
     useEffect(() => {
-        const fetchClientById = async () => {
-          try {
-            const queryParams = {
-              // Add any query parameters you need here
-            };
-    
-            const response = await clientService.getClientById(id,queryParams);
-            // setAllData(response);
-            setClientDetails(response.data);
-          } catch (error) {
-            console.error('Error fetching clients:', error);
-          }
+        const fetchClientData = async () => {
+            try {
+                // Fetch client details
+                const clientResponse = await clientService.getClientById(id);
+                setClientDetails(clientResponse.data);
+                
+                // Fetch client cases
+                const casesResponse = await clientService.getClientCases(id);
+                setClientCases(casesResponse.data);
+            } catch (error) {
+                console.error('Error fetching client data:', error);
+            }
         };
-    
-        fetchClientById();
-      }, [id]); 
+
+        fetchClientData();
+    }, [id]); // Make sure to include id as dependency in useEffe
+
+    const handleCaseClick = (clientId,caseId) => {
+      debugger;
+      // Navigate to the client detail page when a client is clicked
+      navigate(`/clients/${clientId}/case/${caseId}`);
+    };
 
       return (
         <section className="content-main">
@@ -116,6 +125,41 @@ const ClientById = (props) => {
               ))}
             </div>
           </div>
+
+          <div className="card-body">
+          <div className="content-header">
+              <div>
+                <Link to={`/clients/${clientDetails.id}/cases/new`} className="btn btn-primary">
+                 New Case
+                </Link>
+              </div>
+            </div>
+              <div className="table-responsive">
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Case Number</th>
+                      <th scope="col">Case Type</th>
+                      <th scope="col">Client Name</th>
+                      <th scope="col">Case Status</th>
+                      <th scope="col">Created On</th>
+                      <th scope="col">Modified On</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {clientCases.map((kase) => (
+                      <tr key={kase.id} onClick={() => handleCaseClick(kase.clientId,kase.id)} style={{ cursor: "pointer" }}>
+                        {/* <td>{kase.firstName}</td>
+                        <td>{kase.lastName}</td>
+                        <td>{kase.email}</td>
+                        <td>{kase.phone}</td>
+                        <td>{kase.clientType}</td> */}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
       </section>
 
       );

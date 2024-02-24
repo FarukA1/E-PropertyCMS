@@ -7,6 +7,7 @@ namespace E_PropertyCMS.Core.Application.ConvertDtoToDomain
 	public interface IDtoToDomain
 	{
         Task<Client> GetClient(ClientDto dto);
+        Task<Case> GetCase(CaseDto dto);
         Task<Property> GetProperty(PropertyDto dto);
         Task<Address> GetAddress(AddressDto dto);
         Task<Room> GetRoom(RoomDto dto);

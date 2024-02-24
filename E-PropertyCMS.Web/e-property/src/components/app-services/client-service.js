@@ -9,5 +9,10 @@ export const clientService = {
     getClientById: (id,queryParams) => {
         const endpoint = `api/clients/${id}`;
         return apiService.get(endpoint, queryParams);
+    },
+
+    getClientCases: (id,queryParams) => {
+        const endpoint = `api/clients/${id}/cases`;
+        return apiService.get(endpoint, queryParams);
     }
 }

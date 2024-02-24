@@ -87,6 +87,25 @@ namespace E_PropertyCMS.Core.Services
             return properties;
         }
 
+        public async Task<List<Case>> GetClientCases(Guid clientId)
+        {
+            var client = await GetClientById(clientId);
+
+            if(client == null)
+            {
+                throw new EPropertyCMSException($"Client {clientId} does exist");
+            }
+
+            var cases = await _clientRepository.GetClientCases(clientId);
+
+            if (!cases.Any())
+            {
+                return null;
+            }
+
+            return cases;
+        }
+
 
         public async Task<Client> StoreClient(ClientDto dto)
 		{

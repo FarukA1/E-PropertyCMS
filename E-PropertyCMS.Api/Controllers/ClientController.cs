@@ -244,6 +244,71 @@ namespace E_PropertyCMS.Api.Controllers
             return Ok(response);
         }
 
+        // [HttpGet("{id}/cases")]
+        // public async Task<IActionResult> GetClientCases(Guid id, [FromQuery] PaginationFilter filter, string? fields, CaseType? type, CaseStatus? status)
+        // {
+        //     var route = Url.Action(null, null, new
+        //     {
+        //         fields,
+        //         type,
+        //         status
+        //     });
+
+        //     var validFilter = new PaginationFilter
+        //     {
+        //         PageNumber = filter.PageNumber,
+        //         PageSize = filter.PageSize
+        //     };
+
+        //     var cases = new List<Case>();
+
+        //     int count = 0;
+
+        //     cases = await _clientService.GetClientCases(id);
+
+        //     if (!cases.Any())
+        //     {
+        //         return NotFound();
+        //     }
+
+        //     count = cases.Count();
+
+        //     if (type != null)
+        //     {
+        //         cases = cases.Where(v => v.CaseType == type).ToList();
+        //         count = cases.Count();
+        //     }
+
+        //     if (status != null)
+        //     {
+        //         cases = cases.Where(v => v.CaseStatus == status).ToList();
+        //         count = cases.Count();
+        //     }
+
+        //     cases = cases.Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
+        //         .Take(filter.PageSize).ToList();
+
+        //     if (fields != null)
+        //     {
+        //         var casesShaped = new List<object>();
+
+        //         foreach (var kase in cases)
+        //         {
+        //             var caseShaped = DataShaper<Case>.GetShapedObject(kase, fields);
+        //             casesShaped.Add(caseShaped);
+        //         }
+
+        //         var responseShaped = PaginationHelper.CreatePagedResponse(casesShaped, validFilter, count, _uriService, route);
+
+        //         return Ok(responseShaped);
+        //     }
+
+        //     var response = PaginationHelper.CreatePagedResponse(cases, validFilter, count, _uriService, route);
+
+        //     return Ok(response);
+        // }
+
+
         [HttpPost("create")]
         public async Task<IActionResult> StoreClient(ClientDto dto, string? fields)
         {

@@ -8,6 +8,8 @@ import HomeScreen from './screens/HomeScreen';
 import MyProfileScreen from './screens/MyProfileScreen';
 import ClientScreen from './screens/ClientScreen';
 import ClientByIdScreen from './screens/ClientByIdScreen';
+import PropertyScreen from './screens/PropertyScreen';
+import CaseScreen from './screens/CaseScreen';
 
 const App = () => {
   debugger;
@@ -24,6 +26,12 @@ const App = () => {
 
         <Route path="/clients" element={<AuthenticateRoute component={ClientScreen} isAuthenticated={authenticated} path="clients"/>} />
         <Route path="/clients/:id" element={<AuthenticateRoute component={ClientByIdScreen} isAuthenticated={authenticated} path="clients:id"/>} />
+        <Route path="/clients/:id/cases/new" element={<AuthenticateRoute component={ClientByIdScreen} isAuthenticated={authenticated} path="clients:id/cases/new"/>} />
+
+        <Route path="/properties" element={<AuthenticateRoute component={PropertyScreen} isAuthenticated={authenticated} path="clients"/>} />
+        {/* <Route path="/clients/:id" element={<AuthenticateRoute component={ClientByIdScreen} isAuthenticated={authenticated} path="clients:id"/>} /> */}
+
+        <Route path="/cases" element={<AuthenticateRoute component={CaseScreen} isAuthenticated={authenticated} path="cases"/>} />
       </Routes>
     </Router>
   );

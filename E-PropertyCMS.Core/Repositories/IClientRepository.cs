@@ -12,6 +12,7 @@ namespace E_PropertyCMS.Core.Repositories
         Task<List<Client>> Search(string searchQuery);
         Task<Client> GetClientById(Guid Id);
         Task<List<Property>> GetClientProperties(Guid clientId);
+        Task<List<Case>> GetClientCases(Guid clientId);
         Task<Client> StoreClient(Client client);
         Task<Property> GetPropertyById(Guid Id);
         Task<Property> StoreProperty(Guid clientId, Property property);

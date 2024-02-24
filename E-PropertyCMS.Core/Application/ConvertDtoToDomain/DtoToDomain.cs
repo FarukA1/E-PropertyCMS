@@ -51,6 +51,41 @@ namespace E_PropertyCMS.Core.Application.ConvertDtoToDomain
             return client;
         }
 
+        public async Task<Case> GetCase(CaseDto dto)
+        {
+            var kase = new Case()
+            {
+                Id = Guid.NewGuid()
+            };
+
+            if (dto.Reference != null)
+            {
+                kase.Reference = dto.Reference;
+            }
+
+            if (dto.CaseType != null)
+            {
+                kase.CaseType = dto.CaseType;
+            }
+
+            if (dto.CaseStatus != null)
+            {
+                kase.CaseStatus = dto.CaseStatus;
+            }
+
+            if (dto.CreatedOn != null)
+            {
+                kase.CreatedOn = dto.CreatedOn;
+            }
+
+            if (dto.LastModifiedOn != null)
+            {
+                kase.LastModifiedOn = dto.LastModifiedOn;
+            }
+
+            return kase;
+        }
+
         public async Task<Property> GetProperty(PropertyDto dto)
         {
             var property = new Property()

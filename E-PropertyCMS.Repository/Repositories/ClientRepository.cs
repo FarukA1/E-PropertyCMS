@@ -98,6 +98,30 @@ namespace E_PropertyCMS.Repository.Repositories
             return propertyList;
         }
 
+        public async Task<List<Case>> GetClientCases(Guid clientId)
+        {
+            var caseList = new List<Case>();
+
+            var cases = await _coreContext.Case
+                .Include(v => v.Client)
+                .Where(v => v.Client.Key == clientId)
+                .ToListAsync();
+
+            if (!cases.Any())
+            {
+                return null;
+            }
+
+            foreach(var casedb in cases)
+            {
+                var casedomain = casedb.AddToDomain();
+
+                caseList.Add(casedomain);
+            }
+
+            return caseList;
+        }
+
 
         public async Task<Client> StoreClient(Client client)
 		{

@@ -20,6 +20,9 @@ namespace E_PropertyCMS.Repository.Models
 
         public List<PropertyDbModel> Properties { get; set; }
 
+        public DateTime CreatedOn { get; set; }
+        public DateTime LastModifiedOn { get; set; }
+
         public Client AddToDomain()
         {
             var client = new Client()
@@ -30,7 +33,9 @@ namespace E_PropertyCMS.Repository.Models
                 LastName = LastName,
                 Email = Email,
                 Phone = Phone,
-                ClientType = ClientType
+                ClientType = ClientType,
+                CreatedOn = CreatedOn,
+                LastModifiedOn = LastModifiedOn
             };
 
             if(Address != null)
@@ -57,6 +62,8 @@ namespace E_PropertyCMS.Repository.Models
             Email = client.Email;
             Phone = client.Phone;
             ClientType = client.ClientType;
+            CreatedOn = client.CreatedOn;
+            LastModifiedOn = client.LastModifiedOn;
         }
     }
 }

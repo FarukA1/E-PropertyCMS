@@ -16,6 +16,9 @@ namespace E_PropertyCMS.Domain.Model
 
         public List<Property> Properties { get; set; }
 
+        public DateTime CreatedOn { get; set; }
+        public DateTime LastModifiedOn { get; set; }
+
         public Client()
         {
             Properties = new List<Property>();

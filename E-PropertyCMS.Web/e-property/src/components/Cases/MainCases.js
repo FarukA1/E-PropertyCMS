@@ -25,12 +25,12 @@ const MainCases = () => {
           pageSize: pageSize,
           // Add any query parameters you need here
         };
-
+        debugger;
         const response = await caseService.getCases(queryParams);
         setAllData(response);
         setCases(response.data);
       } catch (error) {
-        console.error('Error fetching clients:', error);
+        console.error('Error fetching cases:', error);
       } finally {
         setLoading(false); // Set loading to false after data is fetched or error occurs
       }
@@ -122,6 +122,21 @@ const MainCases = () => {
     navigate(`/clients/${clientId}/case/${caseId}`);
   };
 
+  const getCaseStatusText = (status) => {
+    switch (status) {
+      case 1:
+        return "New";
+      case 2:
+        return "In Progress";
+      case 3:
+        return "Completed";
+      case 4:
+        return "Closed";
+      default:
+        return "Unknown";
+    }
+  };
+
   return (
     <section className="content-main">
       {loading && <Loading />}
@@ -189,12 +204,13 @@ const MainCases = () => {
                   </thead>
                   <tbody>
                     {kases.map((kase) => (
-                      <tr key={kase.id} onClick={() => handleCaseClick(kase.clientId,kase.id)} style={{ cursor: "pointer" }}>
-                        {/* <td>{kase.firstName}</td>
-                        <td>{kase.lastName}</td>
-                        <td>{kase.email}</td>
-                        <td>{kase.phone}</td>
-                        <td>{kase.clientType}</td> */}
+                      <tr key={kase.id} onClick={() => handleCaseClick(kase.client.id,kase.id)} style={{ cursor: "pointer" }}>
+                        <td>{kase.reference}</td>
+                        <td>{kase.caseType.type}</td>
+                        <td>{kase.client.firstName + " " + kase.client.lastName}</td>
+                        <td>{getCaseStatusText(kase.caseStatus)}</td>
+                        <td>{kase.createdOn}</td>
+                        <td>{kase.lastModifiedOn}</td>
                       </tr>
                     ))}
                     <nav className="float-end mt-4" aria-label="Page navigation">

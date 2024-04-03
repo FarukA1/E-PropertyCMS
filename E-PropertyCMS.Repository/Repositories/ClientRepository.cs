@@ -134,6 +134,8 @@ namespace E_PropertyCMS.Repository.Repositories
 				exist = new ClientDbModel()
 				{
 					Key = client.Id,
+                    CreatedOn = DateTime.Now,
+                    LastModifiedOn = DateTime.Now
 				};
 
                 _coreContext.Client.Add(exist);

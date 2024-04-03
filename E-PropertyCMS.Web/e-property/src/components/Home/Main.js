@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { clientService } from './../app-services/client-service';
+import { dashboardService } from '../app-services/dashboard-service';
 import TopTotal from './TopTotal';
 import LatestClients from './LatestClients';
 import LatestCases from './LatestCases';
 
 const Main = () => {
-  // const [clients, setClients] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [allData, setAllData] = useState({});
 
-  // useEffect(() => {
-  //   const fetchClients = async () => {
-  //     try {
-  //       const queryParams = {
-  //         // Add any query parameters you need here
-  //       };
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await dashboardService.getDetails();
+        setAllData(response.data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  //       const response = await clientService.getClients(queryParams);
-  //       setClients(response.data);
-  //       clients = response.data;// Assuming the response is an array of clients
-  //     } catch (error) {
-  //       console.error('Error fetching clients:', error);
-  //     }
-  //   };
-
-  //   fetchClients();
-  // }, []); // Empty dependency array ensures the effect runs only once on mount
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -32,15 +32,17 @@ const Main = () => {
           <h2 className="content-title"> Dashboard </h2>
         </div>
         {/* Top Total */}
-        <TopTotal />
+        <TopTotal loading={loading} error={error} data={allData || []}/>
         
           {/* STATICS */}
           <div className="row">
             <div className="col-md-6">
-              <LatestClients />
+              {/* <LatestClients /> */}
+              <LatestClients loading={loading} error={error} clients={allData.clients || []} />
             </div>
             <div className="col-md-6">
-              <LatestCases />
+              {/* <LatestCases /> */}
+              <LatestCases loading={loading} error={error} cases={allData.cases || []} />
             </div>
           </div>
 

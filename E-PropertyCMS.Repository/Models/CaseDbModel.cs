@@ -1,5 +1,6 @@
 ﻿using System;
 using E_PropertyCMS.Domain.Model;
+using E_PropertyCMS.Domain.Enumeration;
 
 namespace E_PropertyCMS.Repository.Models
 {
@@ -14,8 +15,7 @@ namespace E_PropertyCMS.Repository.Models
         public int ClientId { get; set; }
         public PropertyDbModel Property { get; set; }  
         public int? PropertyId { get; set; }
-        public CaseStatusDbModel CaseStatus { get; set; }
-        public int CaseStatusId { get; set; }
+        public CaseStatus CaseStatus { get; set; }
 
         public DateTime CreatedOn { get; set; }
         public DateTime LastModifiedOn { get; set; }
@@ -26,6 +26,7 @@ namespace E_PropertyCMS.Repository.Models
             {
                 Id = Key,
                 Reference = Reference,
+                CaseStatus = CaseStatus,
                 CreatedOn = CreatedOn,
                 LastModifiedOn = LastModifiedOn
             };
@@ -35,9 +36,14 @@ namespace E_PropertyCMS.Repository.Models
                 kase.CaseType = CaseType.AddToDomain();
             }
 
-            if (CaseStatus != null)
+            if(Client != null)
             {
-                kase.CaseStatus = CaseStatus.AddToDomain();
+                kase.Client = Client.AddToDomain();
+            }
+
+            if(Property != null)
+            {
+                kase.Property = Property.AddToDomain();
             }
 
             return kase;

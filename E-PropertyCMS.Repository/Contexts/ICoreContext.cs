@@ -13,7 +13,6 @@ namespace E_PropertyCMS.Repository.Contexts
         DbSet<RoomDbModel> Room { get; set; }
         DbSet<CaseDbModel> Case { get; set; }
         DbSet<CaseTypeDbModel> CaseType { get; set; }
-        DbSet<CaseStatusDbModel> CaseStatus { get; set; }
         DbSet<UserDbModel> User { get; set; }
 
 

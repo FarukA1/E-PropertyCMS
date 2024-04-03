@@ -6,8 +6,10 @@ namespace E_PropertyCMS.Core.Services
 	public interface ICaseService
 	{
 		Task<List<Case>> GetCases();
-		Task<Case> GetCasesById(Guid caseId);
+		Task<Case> GetCaseById(Guid caseId);
 		Task<Case> StoreCase(CaseDto dto);
+		Task<CaseType> StoreCaseType(CaseTypeDto dto);
+		Task<List<Case>> Search(string searchQuery);
 	}
 }
 

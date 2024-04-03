@@ -2,6 +2,7 @@
 using E_PropertyCMS.Core.Application.Dto;
 using E_PropertyCMS.Core.CustomException;
 using E_PropertyCMS.Domain.Model;
+using E_PropertyCMS.Domain.Utilities;
 
 namespace E_PropertyCMS.Core.Application.ConvertDtoToDomain
 {
@@ -55,35 +56,29 @@ namespace E_PropertyCMS.Core.Application.ConvertDtoToDomain
         {
             var kase = new Case()
             {
+                Id = Guid.NewGuid(),
+            };
+
+            string reference = RandomValue.RandomString(8);
+
+            kase.Reference = reference;
+
+            return kase;
+        }
+
+        public async Task<CaseType> GetCaseType(CaseTypeDto dto)
+        {
+            var caseType = new CaseType()
+            {
                 Id = Guid.NewGuid()
             };
 
-            if (dto.Reference != null)
+            if (dto.Type != null)
             {
-                kase.Reference = dto.Reference;
+                caseType.Type = dto.Type;
             }
 
-            if (dto.CaseType != null)
-            {
-                kase.CaseType = dto.CaseType;
-            }
-
-            if (dto.CaseStatus != null)
-            {
-                kase.CaseStatus = dto.CaseStatus;
-            }
-
-            if (dto.CreatedOn != null)
-            {
-                kase.CreatedOn = dto.CreatedOn;
-            }
-
-            if (dto.LastModifiedOn != null)
-            {
-                kase.LastModifiedOn = dto.LastModifiedOn;
-            }
-
-            return kase;
+            return caseType;
         }
 
         public async Task<Property> GetProperty(PropertyDto dto)

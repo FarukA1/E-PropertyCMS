@@ -6,12 +6,9 @@ namespace E_PropertyCMS.Core.Application.Dto
 {
 	public class CaseDto
 	{
-        public Guid Id { get; set; }
-        public string Reference { get; set; }
-        public CaseType CaseType { get; set; }
-        public CaseStatus CaseStatus { get; set; }
-        public DateTime CreatedOn { get; set; }
-        public DateTime LastModifiedOn { get; set; }
+        public Guid CaseTypeId { get; set; }
+        public Guid ClientId { get; set; }
+        public Guid PropertyId { get; set; }
     }
 }
 

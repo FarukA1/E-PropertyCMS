@@ -20,7 +20,6 @@ public class CoreContext : DbContext, ICoreContext
     public DbSet<RoomDbModel> Room { get; set; }
     public DbSet<CaseDbModel> Case { get; set; }
     public DbSet<CaseTypeDbModel> CaseType { get; set; }
-    public DbSet<CaseStatusDbModel> CaseStatus { get; set; }
     public DbSet<UserDbModel> User { get; set; }
 
     public CoreContext(DbContextOptions<CoreContext> options)
@@ -86,15 +85,11 @@ public class CoreContext : DbContext, ICoreContext
         modelBuilder.Entity<CaseDbModel>().Property(t => t.Reference).HasMaxLength(50);
         modelBuilder.Entity<CaseDbModel>().HasOne(t => t.Property).WithMany().HasForeignKey(v => v.PropertyId);
         modelBuilder.Entity<CaseDbModel>().HasOne(t => t.CaseType).WithMany().HasForeignKey(v => v.CaseTypeId);
-        modelBuilder.Entity<CaseDbModel>().HasOne(t => t.CaseStatus).WithMany().HasForeignKey(v => v.CaseStatusId);
+        modelBuilder.Entity<CaseDbModel>().Property(t => t.CaseStatus);
 
         modelBuilder.Entity<CaseTypeDbModel>().HasKey(t => t.Id);
         modelBuilder.Entity<CaseTypeDbModel>().ToTable("CaseType");
         modelBuilder.Entity<CaseTypeDbModel>().Property(t => t.Type).HasMaxLength(100);
-
-        modelBuilder.Entity<CaseStatusDbModel>().HasKey(t => t.Id);
-        modelBuilder.Entity<CaseStatusDbModel>().ToTable("CaseStatus");
-        modelBuilder.Entity<CaseStatusDbModel>().Property(t => t.Status).HasMaxLength(100);
 
         modelBuilder.Entity<UserDbModel>().HasKey(t => t.Id);
         modelBuilder.Entity<UserDbModel>().ToTable("User");

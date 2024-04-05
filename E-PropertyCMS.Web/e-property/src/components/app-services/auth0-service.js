@@ -27,7 +27,6 @@ export default class Auth0Service {
   }
 
   login() {
-    debugger;
     this.auth0.authorize();
   }
 
@@ -37,9 +36,7 @@ export default class Auth0Service {
   }
 
   handleAuthentication() {
-    debugger;
     this.auth0.parseHash((err, authResult) => {
-      debugger;
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
         // history.push("/");

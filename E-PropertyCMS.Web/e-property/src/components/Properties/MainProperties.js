@@ -117,8 +117,6 @@ const MainProperties = () => {
     };
   
     const handlePropertyClick = (propertyId) => {
-      debugger;
-      // Navigate to the client detail page when a client is clicked
       navigate(`/properties/${propertyId}`);
     };
   

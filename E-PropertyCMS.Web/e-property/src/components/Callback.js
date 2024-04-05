@@ -11,7 +11,7 @@ const Callback =() => {
           try {
             // Perform the authentication process
             await auth0Service.handleAuthentication();
-            debugger;
+
             // If authentication is successful, navigate to the "/" path
             navigate("/");
           } catch (error) {
@@ -25,7 +25,6 @@ const Callback =() => {
     
       return (
         <div>
-          {/* You can render a loading indicator or some content here */}
           <p>Processing authentication...</p>
         </div>
       );

@@ -4,6 +4,13 @@
 
 E-Property is a comprehensive case management system tailored for real estate clients. It facilitates efficient handling and tracking of cases related to property management, offering a seamless experience for both clients and agents.
 
+## Screenshots
+![Screenshot 2024-04-05 at 18 51 45](https://github.com/FarukA1/E-PropertyCMS/assets/69962049/47e9e73f-4c40-4511-805d-db069d9df9fa)
+
+![Screenshot 2024-04-05 at 18 53 56](https://github.com/FarukA1/E-PropertyCMS/assets/69962049/e65bdd4c-d633-495b-bf7b-a73ae3fa9943)
+
+![Screenshot 2024-04-05 at 18 54 14](https://github.com/FarukA1/E-PropertyCMS/assets/69962049/5bdff2bf-beae-4cab-96fa-a6c4addd472d)
+
 ## Technologies Used
 
 - **Backend**: C# with Postgres for data storage

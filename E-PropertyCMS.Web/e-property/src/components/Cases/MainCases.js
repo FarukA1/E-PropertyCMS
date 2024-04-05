@@ -25,7 +25,6 @@ const MainCases = () => {
           pageSize: pageSize,
           // Add any query parameters you need here
         };
-        debugger;
         const response = await caseService.getCases(queryParams);
         setAllData(response);
         setCases(response.data);
@@ -117,8 +116,6 @@ const MainCases = () => {
   };
 
   const handleCaseClick = (clientId,caseId) => {
-    debugger;
-    // Navigate to the client detail page when a client is clicked
     navigate(`/clients/${clientId}/case/${caseId}`);
   };
 

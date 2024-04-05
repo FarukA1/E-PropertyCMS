@@ -12,7 +12,7 @@ import PropertyScreen from './screens/PropertyScreen';
 import CaseScreen from './screens/CaseScreen';
 
 const App = () => {
-  debugger;
+
   const auth0Service = new Auth0Service();
 
   let authenticated = auth0Service.isAuthenticated();

@@ -8,7 +8,6 @@ const ClientById = (props) => {
     const navigate = useNavigate();
     const { id } = useParams();
 
-    debugger;
     const [clientDetails, setClientDetails] = useState([]);
     const [clientCases, setClientCases] = useState([]);
 
@@ -31,8 +30,6 @@ const ClientById = (props) => {
     }, [id]); // Make sure to include id as dependency in useEffe
 
     const handleCaseClick = (clientId,caseId) => {
-      debugger;
-      // Navigate to the client detail page when a client is clicked
       navigate(`/clients/${clientId}/case/${caseId}`);
     };
 

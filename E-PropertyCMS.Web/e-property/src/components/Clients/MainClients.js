@@ -117,8 +117,6 @@ const MainClients = () => {
   };
 
   const handleClientClick = (clientId) => {
-    debugger;
-    // Navigate to the client detail page when a client is clicked
     navigate(`/clients/${clientId}`);
   };
 
